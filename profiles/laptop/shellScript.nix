@@ -31,9 +31,5 @@
       home-manager switch --flake ~/nixos-config#T480
       rm -rf ~/.cache/dmenu_run
     '')
-
-    #(pkgs.writeShellScriptBin "picom" ''
-    #  nixGLIntel ${pkgs.picom}/bin/picom
-    #'')
   ];
 }

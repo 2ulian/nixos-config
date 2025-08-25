@@ -4,6 +4,7 @@
   imports = [
     ../base.nix
     ./shellScript.nix
+    ./picom.nix
   ];
 
   home.packages = [
@@ -32,6 +33,7 @@
 
   xdg.configFile.picom.source = ../../dotfiles/laptop/picom;
   xdg.configFile.rofi.source = ../../dotfiles/laptop/rofi;
+  home.file.".xinitrc".source = ../../dotfiles/laptop/xinitrc;
 
   # .zprofile for session autologin
   home.file.".zprofile".text = ''
