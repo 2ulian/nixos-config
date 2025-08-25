@@ -7,7 +7,7 @@
       rm -rf ~/.cache/dmenu_run
     '')
 
-    (pkgs.writeShellScriptBin "dmenu_run_nix" ''
+    (pkgs.writeShellScriptBin "dmenu_run" ''
       dmenu_path | dmenu "$@" | run_nixGL &
     '')
 
