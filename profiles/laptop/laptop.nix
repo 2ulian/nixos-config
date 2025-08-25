@@ -12,6 +12,7 @@
     pkgs.redshift
     pkgs.brillo
     pkgs.flameshot
+    pkgs.picom
 
     #wallpaper
     pkgs.rofi
@@ -28,6 +29,9 @@
     pkgs.terminus_font
 
   ];
+
+  xdg.configFile.picom.source = ../../dotfiles/laptop/picom;
+  xdg.configFile.rofi.source = ../../dotfiles/laptop/rofi;
 
   # .zprofile for session autologin
   home.file.".zprofile".text = ''
