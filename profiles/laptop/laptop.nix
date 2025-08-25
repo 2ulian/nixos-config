@@ -4,7 +4,6 @@
   imports = [
     ../base.nix
     ./shellScript.nix
-    ./picom.nix
   ];
 
   home.packages = [
