@@ -32,7 +32,7 @@
     '')
 
     (pkgs.writeShellScriptBin "update" ''
-      home-manager switch --flake ~/dotfiles#T480
+      home-manager switch --flake ~/nixos-config#T480
     '')
   ];
 }
