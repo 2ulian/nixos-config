@@ -3,6 +3,7 @@
 {
   imports = [
     ../base.nix
+    ./shellScript.nix
   ];
 
   home.packages = [
