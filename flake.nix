@@ -28,7 +28,7 @@
           extraSpecialArgs = { inherit spicePkgs; };
 
           modules = [ 
-	    ./home/dwm.nix 
+	    ./profiles/laptop/laptop.nix 
             spicetify-nix.homeManagerModules.spicetify
 	  ];
         };

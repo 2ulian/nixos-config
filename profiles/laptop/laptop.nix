@@ -1,0 +1,53 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ../base.nix
+  ];
+
+  home.packages = [
+    #system
+    pkgs.nixgl.nixGLIntel
+    pkgs.redshift
+    pkgs.brillo
+    pkgs.flameshot
+
+    #wallpaper
+    pkgs.rofi
+    pkgs.xwinwrap
+    pkgs.mpv
+    pkgs.xdotool
+    pkgs.pywal
+    pkgs.pywalfox-native
+
+    #programs
+    pkgs.steam
+
+    #font
+    pkgs.terminus_font
+
+  ];
+
+  # .zprofile for session autologin
+  home.file.".zprofile".text = ''
+    # only launch startx if there is no other services
+    if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && [ "''${XDG_VTNR:-0}" -eq 1 ] && [ -z "$TMUX" ]
+    then
+      if ! pgrep -x Xorg >/dev/null
+      then
+        startx
+      fi
+    fi
+  '';
+
+
+  # dconf
+  dconf = {
+    settings = {
+      "org/cinnamon/desktop/applications/terminal" = {
+        exec = "st";
+        # exec-arg = ""; # argument
+      };
+    };
+  };
+}
