@@ -27,7 +27,6 @@
 
     #font
     pkgs.terminus_font
-
   ];
 
   xdg.configFile.picom.source = ../../dotfiles/laptop/picom;

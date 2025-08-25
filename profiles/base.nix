@@ -54,6 +54,7 @@
     pkgs.libreoffice-qt6
     pkgs.eclipses.eclipse-java
     pkgs.jdk17
+    pkgs.age
 
     # Compressor/Extraction utilities
     pkgs.zip
