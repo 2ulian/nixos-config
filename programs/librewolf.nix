@@ -41,9 +41,9 @@
           installation_mode = "force_installed";
         };
 
-        # I don't care about cookies
-        "jid1-KKzOGWgsW3Ao4Q@jetpack" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/i-dont-care-about-cookies/latest.xpi";
+        # I still don't care about cookies
+        "idcac-pub@guus.ninja" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi";
           installation_mode = "force_installed";
         };
 
@@ -76,11 +76,6 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
           installation_mode = "force_installed";
         };
-        # squid girl theme
-        #"{96163b4c-e2f4-4b60-a267-430373918b2f}" = {
-        #  install_url = "https://addons.mozilla.org/firefox/downloads/latest/squid-girl/latest.xpi";
-        #  installation_mode = "force_installed";
-        #};
       };
       /* ---- PREFERENCES ---- */
       # Check about:config for options.
