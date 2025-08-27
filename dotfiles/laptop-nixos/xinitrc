@@ -10,6 +10,13 @@ wal -R &
 
 syncthing --no-browser &
 
+# D-Bus launching if not already launched
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+  eval "$(dbus-launch --sh-syntax)"
+fi
+
+gnome-keyring-daemon
 # pass secret service to save github passwords and xdotool to update the color of the bar
-( sleep 0.5 && xdotool key Super+F5 && pass_secret_service &) &
-exec dbus-launch --exit-with-session dwm
+( sleep 0.5 && xdotool key Super+F5 ) &
+#exec dbus-launch --exit-with-session dwm && gnome-keyring-daemon
+exec dwm
