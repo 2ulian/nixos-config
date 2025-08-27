@@ -4,7 +4,7 @@
   imports = [
     ../base.nix
     ./shellScript.nix
-    ../../programs/hyprland.nix
+    ../../home-modules/hyprland.nix
   ];
 
   home.packages = [

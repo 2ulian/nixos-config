@@ -15,13 +15,13 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   imports = [
-    ../programs/librewolf.nix
-    ../programs/codium.nix
-    ../programs/git.nix
-    ../programs/obs.nix
-    ../programs/spicetify.nix
-    ../programs/zsh.nix
-    ../programs/eclipse.nix
+    ../home-modules/librewolf.nix
+    ../home-modules/codium.nix
+    ../home-modules/git.nix
+    ../home-modules/obs.nix
+    ../home-modules/spicetify.nix
+    ../home-modules/zsh.nix
+    ../home-modules/eclipse.nix
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
