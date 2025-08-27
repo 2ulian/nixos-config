@@ -38,8 +38,6 @@
     pkgs.fastfetch
     pkgs.vlc
     pkgs.btop
-    pkgs.openssl
-    pkgs.rustc
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
@@ -52,9 +50,6 @@
     pkgs.parsec-bin
     pkgs.qbittorrent-enhanced
     pkgs.libreoffice-qt6
-    pkgs.eclipses.eclipse-java
-    pkgs.jdk17
-    pkgs.age
 
     # Compressor/Extraction utilities
     pkgs.zip
