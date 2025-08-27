@@ -60,7 +60,7 @@
           extraSpecialArgs = { inherit spicePkgs; };
 
           modules = [ 
-	    ./profiles/laptop-nixos/laptop.nix 
+	    ./profiles/laptop-nixos/home.nix 
             spicetify-nix.homeManagerModules.spicetify
 	  ];
         };
