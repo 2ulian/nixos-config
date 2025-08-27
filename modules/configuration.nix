@@ -1,13 +1,15 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./dwm.nix
+      ./firewall.nix
+      ./gaming.nix
+      ./intel-drivers.nix
+      ./tlp.nix
+      ./virtualization.nix
     ];
 
   # Bootloader.
@@ -50,10 +52,11 @@
     isNormalUser = true;
     description = "fellwin";
     # i2c to control luminosity on external display
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
+  programs.zsh.enable = true;
 
   # Enable automatic login for the user.
   #services.getty.autologinUser = "fellwin";
@@ -74,59 +77,6 @@
   # enable dconf
   programs.dconf.enable = true;
 
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
-  };
-  programs.gamemode.enable = true;
-  programs.zsh.enable = true;
-  
-  services.xserver = {
-    enable = true;
-    xkb.layout = "fr";
-  };
-
-  services.xserver.displayManager.startx.enable = true;
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    xorg.libX11
-    wireplumber
-    pipewire
-  ];
-
-  # Add permission to group video to modify backlight
-  services.udev.packages = [ pkgs.acpilight ];
-
-  services.xserver.windowManager.dwm = {
-    enable = true;
-    package = pkgs.dwm.overrideAttrs {
-      src = ./dwm;
-    };
-  };
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 20;
-
-      #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-    };
-  };
-
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -140,36 +90,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   services.gvfs.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
-  # Manage the virtualisation services
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-    spiceUSBRedirection.enable = true;
-  };
-  services.spice-vdagentd.enable = true;
-
-  #Intel video driver
-  services.xserver.videoDrivers = [ "modesetting" ];
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # Enable Hardware Acceleration
-    ];
-  };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

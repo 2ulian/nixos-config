@@ -20,6 +20,17 @@
       lib = home-manager.lib;
       spicePkgs = spicetify-nix.legacyPackages.${system};
     in {
+
+      nixosConfigurations = {
+        T480 = nixpkgs.lib.nixosSystem {
+          #inherit system;
+          system = "x86_64-linux";
+          modules = [
+            ./modules/configuration.nix
+          ];
+        };
+      };
+
       homeConfigurations = {
 
         T480 = lib.homeManagerConfiguration {
