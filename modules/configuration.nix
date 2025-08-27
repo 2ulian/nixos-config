@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  programs.hyprland.enable = true;
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -56,19 +57,12 @@
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
-  programs.zsh.enable = true;
-
-  # Enable automatic login for the user.
-  #services.getty.autologinUser = "fellwin";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #make
-  ];
+  programs.zsh.enable = true;
+
   # enable keyring
   services.gnome.gnome-keyring.enable = true;
   # enable pam for tty
@@ -76,6 +70,15 @@
 
   # enable dconf
   programs.dconf.enable = true;
+  # Enable automatic login for the user.
+  #services.getty.autologinUser = "fellwin";
+
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    #make
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
