@@ -21,6 +21,7 @@
     ../programs/obs.nix
     ../programs/spicetify.nix
     ../programs/zsh.nix
+    ../programs/eclipse.nix
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
