@@ -11,5 +11,5 @@ wal -R &
 syncthing --no-browser &
 
 # pass secret service to save github passwords and xdotool to update the color of the bar
-#( sleep 0.5 && xdotool key Super+F5 ) &
+( sleep 0.5 && xdotool key Super+F5 && pass_secret_service &) &
 exec dbus-launch --exit-with-session dwm

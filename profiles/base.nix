@@ -63,8 +63,7 @@
     pkgs.unrar
     pkgs.xz
   ];
-
-  # enable keyring service
+  # enables secret service
   services.pass-secret-service.enable = true;
 
   home.file = {
