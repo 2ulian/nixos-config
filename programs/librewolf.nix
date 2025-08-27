@@ -80,8 +80,10 @@
       /* ---- PREFERENCES ---- */
       # Check about:config for options.
       Preferences = { 
-        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        # "ui.systemUsesDarkTheme" = true; a mettre dans le user.js quand j'en aurais un
         "gfx.webrender.all" = true;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        "privacy.clearOnShutdown_v2.cache" = false;
       };
     };
   };

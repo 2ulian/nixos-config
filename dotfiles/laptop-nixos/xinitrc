@@ -1,0 +1,15 @@
+#!/bin/bash
+
+picom &
+
+slstatus &
+
+wal -R &
+
+#/home/fellwin/.config/rofi/restore.sh
+
+syncthing --no-browser &
+
+# pass secret service to save github passwords and xdotool to update the color of the bar
+#( sleep 0.5 && xdotool key Super+F5 ) &
+exec dbus-launch --exit-with-session dwm

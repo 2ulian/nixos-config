@@ -43,6 +43,16 @@
             spicetify-nix.homeManagerModules.spicetify
 	  ];
         };
+        T480-nixos = lib.homeManagerConfiguration {
+          inherit pkgs;
+          # Optionnel (pratique pour accéder à inputs dans tes modules)
+          extraSpecialArgs = { inherit spicePkgs; };
+
+          modules = [ 
+	    ./profiles/laptop-nixos/laptop.nix 
+            spicetify-nix.homeManagerModules.spicetify
+	  ];
+        };
       };
     };
 }

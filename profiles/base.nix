@@ -64,6 +64,8 @@
     pkgs.xz
   ];
 
+  # enable keyring service
+  services.pass-secret-service.enable = true;
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
