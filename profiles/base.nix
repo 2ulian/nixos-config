@@ -50,6 +50,7 @@
     pkgs.parsec-bin
     pkgs.qbittorrent-enhanced
     pkgs.libreoffice-qt6
+    pkgs.seahorse
 
     # Compressor/Extraction utilities
     pkgs.zip
@@ -58,8 +59,6 @@
     pkgs.unrar
     pkgs.xz
   ];
-  # enables secret service
-  services.pass-secret-service.enable = true;
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
