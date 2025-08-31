@@ -2,14 +2,12 @@
 
 {
   imports = [
-    ./home.nix
+    #./shellScript.nix
+    ../../home-modules/base.nix
+    ../../home-modules/hyprland.nix
   ];
 
   home.packages = [
-    pkgs.pywal
-    pkgs.pywalfox-native
-
-
     # required for qemu/kvm:
     pkgs.virt-manager
     pkgs.virt-viewer
@@ -20,31 +18,12 @@
     pkgs.win-spice
   ];
 
-  dconf = {
-    settings = {
-      "org/cinnamon/desktop/applications/terminal" = {
-        exec = "kitty";
-        # exec-arg = ""; # argument
-      };
-    };
-  };
 
   programs.zsh = {
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/dotfiles";
     };
   };
-
-
-  # .zprofile for hyprland autologin
-  home.file.".zprofile".text = ''
-    # only launch hyprland if there is no other services
-    if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && [ "''${XDG_VTNR:-0}" -eq 1 ] && [ -z "$TMUX" ]
-    then
-      exec Hyprland
-    fi
-  '';
-
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

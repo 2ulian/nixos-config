@@ -39,20 +39,20 @@
           extraSpecialArgs = { inherit spicePkgs; };
 
           modules = [ 
-	    ./profiles/laptop/laptop.nix 
+	          ./profiles/laptop/laptop.nix 
             spicetify-nix.homeManagerModules.spicetify
-	  ];
+	        ];
         };
 
-        sirius = lib.homeManagerConfiguration {
+        desktop = lib.homeManagerConfiguration {
           inherit pkgs;
           # Optionnel (pratique pour accéder à inputs dans tes modules)
           extraSpecialArgs = { inherit spicePkgs; };
 
           modules = [ 
-	    ./home/hyprland.nix 
+	          ./profiles/desktop/home.nix 
             spicetify-nix.homeManagerModules.spicetify
-	  ];
+	        ];
         };
         T480-nixos = lib.homeManagerConfiguration {
           inherit pkgs;
@@ -60,9 +60,9 @@
           extraSpecialArgs = { inherit spicePkgs; };
 
           modules = [ 
-	    ./profiles/laptop-nixos/home.nix 
+	          ./profiles/laptop-nixos/home.nix 
             spicetify-nix.homeManagerModules.spicetify
-	  ];
+	        ];
         };
       };
     };
