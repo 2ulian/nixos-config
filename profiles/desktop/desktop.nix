@@ -5,11 +5,6 @@
     ./home.nix
   ];
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   home.packages = [
     pkgs.pywal
     pkgs.pywalfox-native
@@ -82,13 +77,5 @@
   #
   #  /etc/profiles/per-user/fellwin/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
 
-  # GTK Theming
-  gtk.cursorTheme = {
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-  };
 }

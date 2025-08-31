@@ -15,13 +15,13 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   imports = [
-    ../home-modules/librewolf.nix
-    ../home-modules/codium.nix
-    ../home-modules/git.nix
-    ../home-modules/obs.nix
-    ../home-modules/spicetify.nix
-    ../home-modules/zsh.nix
-    ../home-modules/eclipse.nix
+    ./librewolf.nix
+    ./codium.nix
+    ./git.nix
+    ./obs.nix
+    ./spicetify.nix
+    ./zsh.nix
+    ./eclipse.nix
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -34,6 +34,7 @@
 
     # other packages:
     pkgs.fzf
+    pkgs.feh
     pkgs.vim
     pkgs.neovim
     pkgs.fastfetch
@@ -52,6 +53,7 @@
     pkgs.qbittorrent-enhanced
     pkgs.libreoffice-qt6
     pkgs.seahorse
+    pkgs.calibre
 
     # Compressor/Extraction utilities
     pkgs.zip

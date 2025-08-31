@@ -4,7 +4,7 @@ picom &
 
 slstatus &
 
-wal -R &
+wal -n -R &
 
 #/home/fellwin/.config/rofi/restore.sh
 
