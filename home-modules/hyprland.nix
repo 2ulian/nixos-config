@@ -94,10 +94,12 @@
     #prev=""
     #[[ -f "$state" ]] && prev="$(cat "$state")"
 
+    sleep 10
+    prev="$(caelestia wallpaper)
     while true; do
       cur="$(caelestia wallpaper || true)"
       if [[ -n "${cur:-}" && "$cur" != "$prev" ]]; then
-        wal -n -i "$cur"
+        wal -n -i "$cur" && pywalfox update
         prev=$cur
       fi
       sleep 2

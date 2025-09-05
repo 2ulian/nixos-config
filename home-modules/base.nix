@@ -37,7 +37,6 @@
     pkgs.fzf
     pkgs.feh
     pkgs.vim
-    pkgs.neovim
     pkgs.fastfetch
     pkgs.vlc
     pkgs.btop
@@ -47,7 +46,6 @@
     pkgs.stremio
     pkgs.syncthing
     pkgs.kitty
-    pkgs.ghostty
     pkgs.nemo-with-extensions
     pkgs.file-roller
     pkgs.nemo-fileroller
@@ -59,6 +57,12 @@
     pkgs.pwvucontrol
     pkgs.ttyper
     pkgs.tmux
+
+    #neovim
+    pkgs.neovim
+    pkgs.wl-clipboard
+    pkgs.ripgrep
+    pkgs.gcc
 
     #test
     pkgs.python314

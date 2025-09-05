@@ -21,6 +21,9 @@
       # pywal
       (cat ~/.cache/wal/sequences &)
 
+      # to not get the vim mode
+      bindkey -e
+
       # Configuration of powerlevel10k
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -32,27 +35,16 @@
       zmodload zsh/terminfo
       bindkey "$terminfo[kcuu1]" history-substring-search-up
       bindkey "$terminfo[kcud1]" history-substring-search-down
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[OA' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
-      bindkey '^[OB' history-substring-search-down
-      bindkey -M vicmd '^[[A' history-substring-search-up
-      bindkey -M vicmd '^[OA' history-substring-search-up
-      bindkey -M vicmd '^[[B' history-substring-search-down
-      bindkey -M vicmd '^[OB' history-substring-search-down
-      bindkey -M viins '^[[A' history-substring-search-up
-      bindkey -M viins '^[OA' history-substring-search-up
-      bindkey -M viins '^[[B' history-substring-search-down
-      bindkey -M viins '^[OB' history-substring-search-down
-
-      # Compile .zshrc into .zshrc.zwc if needed for faster zsh
-      if [[ ! -f ~/.zshrc.zwc || ~/.zshrc -nt ~/.zshrc.zwc ]]; then
-        zcompile ~/.zshrc
-      fi
+      #bindkey '^[[A' history-substring-search-up
+      #bindkey '^[OA' history-substring-search-up
+      #bindkey '^[[B' history-substring-search-down
+      #bindkey '^[OB' history-substring-search-down
     '';
 
-    #shellAliases = {
+    shellAliases = {
     #  update = "sudo nixos-rebuild switch --flake ~/dotfiles";
-    #};
+      vim = "nvim";
+    };
+
   };
 }
