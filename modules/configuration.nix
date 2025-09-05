@@ -57,13 +57,14 @@
     # i2c to control luminosity on external display
     extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   # enable keyring
   services.gnome.gnome-keyring.enable = true;
