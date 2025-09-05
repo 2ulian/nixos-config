@@ -20,7 +20,6 @@
     };
     settings.appearance = {
       font.size.scale = 0.9;   # essaie 0.9, 0.85, 0.8…
-      # En option, pour compacter un peu l'UI :
       padding.scale = 0.7;
       spacing.scale = 0.5;
       font.family = {
@@ -44,12 +43,9 @@
   # Script qui surveille le fond d’écran courant et applique pywal
   home.file.".local/bin/caelestia-wallwatch".text = ''
     #!/bin/sh
-    #set -euo pipefail
-    #prev=""
-    #[[ -f "$state" ]] && prev="$(cat "$state")"
 
-    sleep 10
-    prev="$(caelestia wallpaper)
+    sleep 5
+
     while true; do
       cur="$(caelestia wallpaper || true)"
       if [[ -n "${cur:-}" && "$cur" != "$prev" ]]; then
@@ -60,14 +56,4 @@
     done
   '';
   home.file.".local/bin/caelestia-wallwatch".executable = true;
-
-  systemd.user.services."caelestia-pywal" = {
-    Unit = { Description = "Apply pywal on Caelestia wallpaper change"; };
-    Service = {
-      ExecStart = "%h/.local/bin/caelestia-wallwatch";
-      Restart = "always";
-      RestartSec = 2;
-    };
-    Install = { WantedBy = [ "default.target" ]; };
-  };
 }
