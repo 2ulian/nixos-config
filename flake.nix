@@ -55,7 +55,8 @@
 
           modules = [ 
 	          ./profiles/desktop/home.nix 
-                  spicetify-nix.homeManagerModules.spicetify
+            spicetify-nix.homeManagerModules.spicetify
+            caelestia-shell.homeManagerModules.default
 	        ];
         };
         T480-nixos = lib.homeManagerConfiguration {
