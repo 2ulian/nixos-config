@@ -57,6 +57,7 @@
     pkgs.pwvucontrol
     pkgs.ttyper
     pkgs.tmux
+    pkgs.fish
 
     #neovim
     pkgs.neovim
@@ -64,8 +65,6 @@
     pkgs.ripgrep
     pkgs.gcc
 
-    #test
-    pkgs.python314
 
     # Compressor/Extraction utilities
     pkgs.zip

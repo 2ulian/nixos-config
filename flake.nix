@@ -11,9 +11,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    illogical-impulse.url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl, caelestia-shell, ... }:
+  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl, caelestia-shell, illogical-impulse, ... }:
     let
       system = "x86_64-linux";
       #pkgs = nixpkgs.legacyPackages.${system};
@@ -57,6 +58,7 @@
 	          ./profiles/desktop/home.nix 
             spicetify-nix.homeManagerModules.spicetify
             caelestia-shell.homeManagerModules.default
+	    illogical-impulse.homeManagerModules.default
 	        ];
         };
         T480-nixos = lib.homeManagerConfiguration {
