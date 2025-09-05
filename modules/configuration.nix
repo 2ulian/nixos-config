@@ -2,6 +2,7 @@
 
 {
   programs.hyprland.enable = true;
+  services.upower.enable = true;
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -9,8 +10,9 @@
       ./firewall.nix
       ./gaming.nix
       ./intel-drivers.nix
-      ./tlp.nix
+      ./battery.nix
       ./virtualization.nix
+      ./mullvad.nix
     ];
 
   # Bootloader.

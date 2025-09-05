@@ -8,6 +8,7 @@
     pkgs.flameshot
     pkgs.picom
     pkgs.dmenu
+    pkgs.networkmanagerapplet
 
     #wallpaper
     pkgs.rofi

@@ -22,6 +22,7 @@
     ./spicetify.nix
     ./zsh.nix
     ./eclipse.nix
+    ./opsec.nix
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -46,6 +47,7 @@
     pkgs.stremio
     pkgs.syncthing
     pkgs.kitty
+    pkgs.ghostty
     pkgs.nemo-with-extensions
     pkgs.file-roller
     pkgs.nemo-fileroller
@@ -54,6 +56,12 @@
     pkgs.libreoffice-qt6
     pkgs.seahorse
     pkgs.calibre
+    pkgs.pwvucontrol
+    pkgs.ttyper
+    pkgs.tmux
+
+    #test
+    pkgs.python314
 
     # Compressor/Extraction utilities
     pkgs.zip
@@ -97,13 +105,16 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-gtk-theme;
+      name = "Flat-Remix-GTK-Blue-Darkest";
+      package = pkgs.flat-remix-gtk;
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+    # Force dark mode
+    gtk3.extraConfig = { "gtk-application-prefer-dark-theme" = 1; };
+    gtk4.extraConfig = { "gtk-application-prefer-dark-theme" = 1; };
   };
 
   home.sessionVariables = {

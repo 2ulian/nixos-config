@@ -44,6 +44,11 @@
       bindkey -M viins '^[OA' history-substring-search-up
       bindkey -M viins '^[[B' history-substring-search-down
       bindkey -M viins '^[OB' history-substring-search-down
+
+      # Compile .zshrc into .zshrc.zwc if needed for faster zsh
+      if [[ ! -f ~/.zshrc.zwc || ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+        zcompile ~/.zshrc
+      fi
     '';
 
     #shellAliases = {

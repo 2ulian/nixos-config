@@ -7,9 +7,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixgl.url = "github:nix-community/nixGL";
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl,... }:
+  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl, caelestia-shell, ... }:
     let
       system = "x86_64-linux";
       #pkgs = nixpkgs.legacyPackages.${system};
@@ -40,7 +44,7 @@
 
           modules = [ 
 	          ./profiles/laptop/laptop.nix 
-            spicetify-nix.homeManagerModules.spicetify
+                  spicetify-nix.homeManagerModules.spicetify
 	        ];
         };
 
@@ -51,7 +55,7 @@
 
           modules = [ 
 	          ./profiles/desktop/home.nix 
-            spicetify-nix.homeManagerModules.spicetify
+                  spicetify-nix.homeManagerModules.spicetify
 	        ];
         };
         T480-nixos = lib.homeManagerConfiguration {
@@ -61,7 +65,8 @@
 
           modules = [ 
 	          ./profiles/laptop-nixos/home.nix 
-            spicetify-nix.homeManagerModules.spicetify
+                  spicetify-nix.homeManagerModules.spicetify
+                  caelestia-shell.homeManagerModules.default
 	        ];
         };
       };

@@ -6,6 +6,6 @@
       #adblockify
       shuffle
     ];
-    theme = spicePkgs.themes.hazy;
+    theme = spicePkgs.themes.sleek;
   };
 }
