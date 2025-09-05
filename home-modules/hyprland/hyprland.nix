@@ -7,16 +7,12 @@
   home.packages = [
     # required packages for hyprland:
     pkgs.brillo
-    pkgs.walker
     pkgs.hyprshade
     pkgs.hyprshot
     pkgs.hyprsunset
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
 
-    pkgs.waybar
-    pkgs.nerd-fonts._0xproto
-    
     #required for wallpapers:
     pkgs.mpvpaper
     pkgs.imagemagick
@@ -27,6 +23,8 @@
 
     # fonts (run "fc-cache -f" if the system dont detect the fonts):
   ];
+
+  xdg.configFile.kitty.source = ../../dotfiles/kitty;
 
   dconf = {
     settings = {
