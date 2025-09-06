@@ -46,7 +46,6 @@
     pkgs.vesktop
     pkgs.stremio
     pkgs.syncthing
-    pkgs.kitty
     pkgs.nemo-with-extensions
     pkgs.file-roller
     pkgs.nemo-fileroller

@@ -12,6 +12,7 @@
     pkgs.hyprsunset
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
+    pkgs.kitty
 
     #required for wallpapers:
     pkgs.mpvpaper
@@ -24,6 +25,7 @@
     # fonts (run "fc-cache -f" if the system dont detect the fonts):
   ];
 
+  #kitty configuration
   xdg.configFile.kitty.source = ../../dotfiles/kitty;
 
   dconf = {
