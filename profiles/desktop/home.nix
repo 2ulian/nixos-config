@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -20,12 +20,11 @@
     pkgs.win-spice
   ];
 
+  xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
+  xdg.configFile."hypr/desktop.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/hyprland.conf;
+  xdg.configFile."hypr/luminosity_up.sh".source = lib.mkOverride 10 ../../dotfiles/hypr/luminosity_up.sh;
+  xdg.configFile."hypr/luminosity_down.sh".source = lib.mkOverride 10 ../../dotfiles/hypr/luminosity_down.sh;
 
-  programs.zsh = {
-    shellAliases = {
-      update = "sudo nixos-rebuild switch --flake ~/dotfiles";
-    };
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
