@@ -3,13 +3,9 @@
 {
   programs.hyprland.enable = true;
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./dwm.nix
+    [
       ./firewall.nix
       ./gaming.nix
-      ./intel-drivers.nix
-      ./battery.nix
       ./virtualization.nix
       ./mullvad.nix
     ];
@@ -18,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "T480"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

@@ -25,52 +25,41 @@
       lib = home-manager.lib;
       spicePkgs = spicetify-nix.legacyPackages.${system};
     in {
-
       nixosConfigurations = {
         T480 = nixpkgs.lib.nixosSystem {
           #inherit system;
           system = "x86_64-linux";
           modules = [
-            ./modules/configuration.nix
+            ./profiles/laptop-nixos/configuration.nix
           ];
         };
       };
 
       homeConfigurations = {
 
-        T480 = lib.homeManagerConfiguration {
-          inherit pkgs;
-          # Optionnel (pratique pour accéder à inputs dans tes modules)
-          extraSpecialArgs = { inherit spicePkgs; };
-
-          modules = [ 
-	          ./profiles/laptop/laptop.nix 
-                  spicetify-nix.homeManagerModules.spicetify
-	        ];
-        };
-
         desktop = lib.homeManagerConfiguration {
           inherit pkgs;
           # Optionnel (pratique pour accéder à inputs dans tes modules)
           extraSpecialArgs = { inherit spicePkgs; };
 
-          modules = [ 
-	          ./profiles/desktop/home.nix 
+          modules = [
+            ./profiles/desktop/home.nix
             spicetify-nix.homeManagerModules.spicetify
             caelestia-shell.homeManagerModules.default
-	    illogical-impulse.homeManagerModules.default
-	        ];
+            illogical-impulse.homeManagerModules.default
+          ];
         };
+
         T480-nixos = lib.homeManagerConfiguration {
           inherit pkgs;
           # Optionnel (pratique pour accéder à inputs dans tes modules)
           extraSpecialArgs = { inherit spicePkgs; };
 
-          modules = [ 
-	          ./profiles/laptop-nixos/home.nix 
-                  spicetify-nix.homeManagerModules.spicetify
-                  caelestia-shell.homeManagerModules.default
-	        ];
+          modules = [
+            ./profiles/laptop-nixos/home.nix
+            spicetify-nix.homeManagerModules.spicetify
+            caelestia-shell.homeManagerModules.default
+          ];
         };
       };
     };
