@@ -7,7 +7,8 @@
     # VSCode extensions
     profiles.default.extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode
-        vscodevim.vim
+      vscodevim.vim
+      ritwickdey.liveserver
     ];
 
     # Tu peux aussi ajouter des extensions depuis nixpkgs non packagées avec :
