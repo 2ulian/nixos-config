@@ -11,10 +11,9 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    illogical-impulse.url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl, caelestia-shell, illogical-impulse, ... }:
+  outputs = { self, nixpkgs, home-manager, spicetify-nix, nixgl, caelestia-shell, ... }:
     let
       system = "x86_64-linux";
       #pkgs = nixpkgs.legacyPackages.${system};
@@ -53,7 +52,6 @@
           modules = [
             ./profiles/desktop/home.nix
             spicetify-nix.homeManagerModules.spicetify
-            illogical-impulse.homeManagerModules.default
           ];
         };
 
