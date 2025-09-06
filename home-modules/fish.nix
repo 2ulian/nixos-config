@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib,... }:
 {
 
   home.packages = [
-    #pkgs.grc
     pkgs.lsd
   ];
 
@@ -21,13 +20,18 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
+    #interactiveShellInit = ''
       #set fish_greeting # Disable greeting
+    #'';
+    interactiveShellInit = ''
+      functions --erase ls 2>/dev/null
+      function ls --description "GNU ls with colors"
+        command lsd $argv
+      end
     '';
 
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
-      #{ name = "grc"; src = pkgs.fishPlugins.grc.src; }
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
       { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
       { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
@@ -37,14 +41,13 @@
     ];
   };
 
-  # shellAliases
-  xdg.configFile."fish/conf.d/10-aliases.fish".text = ''
-    alias ls="lsd"
-    alias ll="lsd -l"
+  # config file
+  xdg.configFile."fish/config.fish".text = ''
+    alias ls='lsd'
+    alias ll='lsd -l'
     alias vim="nvim"
-  '';
 
-  xdg.configFile."fish/conf.d/00-greeting.fish".text = ''
+
     set fish_greeting # Disable greeting
   '';
 }
