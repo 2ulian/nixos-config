@@ -58,6 +58,8 @@
     pkgs.tmux
     pkgs.lutris
     pkgs.heroic
+    pkgs.ncspot
+    pkgs.anki-bin
 
     #neovim
     pkgs.neovim
