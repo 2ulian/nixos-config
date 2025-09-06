@@ -23,12 +23,6 @@
     #interactiveShellInit = ''
       #set fish_greeting # Disable greeting
     #'';
-    interactiveShellInit = ''
-      functions --erase ls 2>/dev/null
-      function ls --description "GNU ls with colors"
-        command lsd $argv
-      end
-    '';
 
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -41,13 +35,17 @@
     ];
   };
 
+
   # config file
   xdg.configFile."fish/config.fish".text = ''
     alias ls='lsd'
     alias ll='lsd -l'
     alias vim="nvim"
+  '';
 
 
-    set fish_greeting # Disable greeting
+  # disable greeting
+  xdg.configFile."fish/conf.d/disable-greeting.fish".text = ''
+    set fish_greeting
   '';
 }
