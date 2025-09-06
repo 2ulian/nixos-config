@@ -1,29 +1,40 @@
-{ lib, pkgs, illogical-impulse, ... }:
+{ lib, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
 
-  illogical-impulse = {
-    # Enable the dotfiles suite
-    enable = true;
+    quickshell
 
+    # Qt / KDE
+    kdePackages.kdialog
+    kdePackages.qt5compat
+    kdePackages.qtbase
+    kdePackages.qtdeclarative
+    kdePackages.qtimageformats
+    kdePackages.qtmultimedia
+    kdePackages.qtpositioning
+    kdePackages.qtquicktimeline
+    kdePackages.qtsensors
+    kdePackages.qtsvg
+    kdePackages.qttools
+    kdePackages.qttranslations
+    kdePackages.qtvirtualkeyboard
+    kdePackages.qtwayland
+    kdePackages.syntax-highlighting
+    kdePackages.breeze
 
-    # Dotfiles configurations
-    dotfiles = {
-        fish.enable = false;
-        kitty.enable = false;
-    };
-  };
+    #font
+    material-symbols
+    google-fonts
 
-  # Dont remove my config
-  #xdg.configFile."hypr/hyprland.conf" = lib.mkForce { enable = false; };
-  #xdg.configFile."hypr" = lib.mkForce enable = false;
-  xdg.configFile."fish/config.fish" = lib.mkForce { enable = false; };
-  xdg.configFile."quickshell".source = lib.mkForce ../../dotfiles/quickshell;
+    # wallpaper switcher utils
+    xdg-user-dirs
+    bc
+    jq
+    gsettings-qt
+    matugen
+  ];
 
-  gtk = lib.mkForce {
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
+  xdg.configFile."quickshell".source = ../../dotfiles/quickshell;
+
 }

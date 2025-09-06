@@ -22,7 +22,8 @@
     pkgs.pywal
     pkgs.pywalfox-native
 
-    # fonts (run "fc-cache -f" if the system dont detect the fonts):
+    # To have all icons
+    pkgs.adwaita-icon-theme
   ];
 
   #kitty configuration
@@ -35,6 +36,12 @@
         # exec-arg = ""; # argument
       };
     };
+  };
+
+  # Enable qt for icon compability and PATH issue
+  qt = {
+    enable = true;
+    platformTheme.name = "kde6";
   };
 
   # GTK Theming

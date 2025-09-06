@@ -20,9 +20,9 @@
   programs.fish = {
     enable = true;
 
-    #interactiveShellInit = ''
-      #set fish_greeting # Disable greeting
-    #'';
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
 
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -33,25 +33,11 @@
       { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
       { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
     ];
+
+    shellAliases = {
+      vim = "nvim";
+      ls = "lsd";
+      ll = "lsd -l";
+    };
   };
-
-
-  # config file
-  #xdg.configFile."fish/config.fish".text = ''
-  #  alias ls='lsd'
-  #  alias ll='lsd -l'
-  #  alias vim="nvim"
-  #'';
-
-  xdg.configFile."fish/conf.d/aliases.fish".text = ''
-    alias ls='lsd'
-    alias ll='lsd -l'
-    alias vim="nvim"
-  '';
-
-
-  # disable greeting
-  xdg.configFile."fish/conf.d/disable-greeting.fish".text = ''
-    set fish_greeting
-  '';
 }
