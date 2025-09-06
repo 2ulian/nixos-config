@@ -4,7 +4,7 @@
   imports =
     [
       ../../modules/base.nix
-      ../../modules/intel-drivers.nix
+      ../../modules/nvidia.nix
       ./hardware-configuration.nix
     ];
 

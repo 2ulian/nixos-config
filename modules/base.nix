@@ -2,6 +2,7 @@
 
 {
   programs.hyprland.enable = true;
+
   imports =
     [
       ./firewall.nix
