@@ -37,7 +37,13 @@
 
 
   # config file
-  xdg.configFile."fish/config.fish".text = ''
+  #xdg.configFile."fish/config.fish".text = ''
+  #  alias ls='lsd'
+  #  alias ll='lsd -l'
+  #  alias vim="nvim"
+  #'';
+
+  xdg.configFile."fish/conf.d/aliases.fish".text = ''
     alias ls='lsd'
     alias ll='lsd -l'
     alias vim="nvim"

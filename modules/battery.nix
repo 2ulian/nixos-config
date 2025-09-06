@@ -3,6 +3,9 @@
   # service to show battery information
   services.upower.enable = true;
 
+  # to get the permissions to change luminosity
+  services.udev.packages = [ pkgs.acpilight ];
+
   # NetworkManager powersave
   networking.networkmanager.wifi.powersave = true;
 
