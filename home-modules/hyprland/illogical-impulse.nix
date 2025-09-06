@@ -1,4 +1,4 @@
-{ lib, illogical-impulse, ... }:
+{ lib, pkgs, illogical-impulse, ... }:
 
 {
 
@@ -19,5 +19,11 @@
   #xdg.configFile."hypr" = lib.mkForce enable = false;
   xdg.configFile."fish/config.fish" = lib.mkForce { enable = false; };
   xdg.configFile."quickshell".source = lib.mkForce ../../dotfiles/quickshell;
-  gtk.iconTheme = lib.mkForce null;
+
+  gtk = lib.mkForce {
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
 }
