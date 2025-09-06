@@ -45,7 +45,6 @@
     pkgs.obsidian
     pkgs.vesktop
     pkgs.stremio
-    pkgs.syncthing
     pkgs.nemo-with-extensions
     pkgs.file-roller
     pkgs.nemo-fileroller
@@ -72,6 +71,8 @@
     pkgs.unrar
     pkgs.xz
   ];
+
+  services.syncthing.enable = true;
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
