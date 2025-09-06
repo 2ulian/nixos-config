@@ -65,11 +65,6 @@
   programs.zsh.enable = true;
   programs.fish.enable = true;
 
-  # enable keyring
-  services.gnome.gnome-keyring.enable = true;
-  # enable pam for tty
-  security.pam.services.login.enableGnomeKeyring = true;
-
   # enable dconf
   programs.dconf.enable = true;
   # Enable automatic login for the user.
