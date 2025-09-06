@@ -33,11 +33,19 @@
             ./profiles/laptop-nixos/configuration.nix
           ];
         };
+
+        sirius = nixpkgs.lib.nixosSystem {
+          #inherit system;
+          system = "x86_64-linux";
+          modules = [
+            ./profiles/desktop/configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
 
-        desktop = lib.homeManagerConfiguration {
+        sirius = lib.homeManagerConfiguration {
           inherit pkgs;
           # Optionnel (pratique pour accéder à inputs dans tes modules)
           extraSpecialArgs = { inherit spicePkgs; };
@@ -45,12 +53,11 @@
           modules = [
             ./profiles/desktop/home.nix
             spicetify-nix.homeManagerModules.spicetify
-            caelestia-shell.homeManagerModules.default
             illogical-impulse.homeManagerModules.default
           ];
         };
 
-        T480-nixos = lib.homeManagerConfiguration {
+        T480 = lib.homeManagerConfiguration {
           inherit pkgs;
           # Optionnel (pratique pour accéder à inputs dans tes modules)
           extraSpecialArgs = { inherit spicePkgs; };

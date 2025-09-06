@@ -4,11 +4,11 @@
 {
   home.packages = [
     (pkgs.writeShellScriptBin "homeupdate" ''
-      home-manager switch --flake ~/nixos-config#T480
+      home-manager switch --flake ~/nixos-config#sirius
     '')
 
     (pkgs.writeShellScriptBin "nixupdate" ''
-      sudo nixos-rebuild switch --flake ~/nixos-config#T480
+      sudo nixos-rebuild switch --flake ~/nixos-config#sirius
     '')
   ];
 }
