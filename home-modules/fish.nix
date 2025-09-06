@@ -17,6 +17,7 @@
       fi
     '';
   };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
