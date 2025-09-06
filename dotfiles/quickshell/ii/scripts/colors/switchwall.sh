@@ -408,6 +408,7 @@ main() {
     fi
 
     switch "$imgpath" "$mode_flag" "$type_flag" "$color_flag" "$color"
+    wal -n -i "$imgpath" && pywalfox update
 }
 
 main "$@"
