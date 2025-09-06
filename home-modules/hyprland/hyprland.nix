@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  # temporaire car cve
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebengine-5.15.19"
+  ];
+
   imports = [
     #./illogical-impulse.nix
   ];

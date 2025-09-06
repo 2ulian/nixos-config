@@ -2,10 +2,6 @@
 
 {
 
-  # temporaire car cve
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebengine-5.15.19"
-  ];
 
   home.packages = with pkgs; [
 
