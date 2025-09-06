@@ -41,7 +41,7 @@
   # Enable qt for icon compability and PATH issue
   qt = {
     enable = true;
-    platformTheme.name = "kde6";
+    platformTheme.name = "kde";
   };
 
   # GTK Theming

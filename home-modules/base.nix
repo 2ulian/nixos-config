@@ -56,6 +56,8 @@
     pkgs.pwvucontrol
     pkgs.ttyper
     pkgs.tmux
+    pkgs.lutris
+    pkgs.heroic
 
     #neovim
     pkgs.neovim
