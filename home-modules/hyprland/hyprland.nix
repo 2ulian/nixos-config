@@ -12,9 +12,9 @@
   home.packages = [
     # required packages for hyprland:
     pkgs.brillo
-    pkgs.hyprshade
     pkgs.hyprshot
     pkgs.hyprsunset
+    pkgs.hyprpicker
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
     pkgs.kitty

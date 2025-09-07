@@ -51,7 +51,6 @@
     pkgs.parsec-bin
     pkgs.qbittorrent-enhanced
     pkgs.libreoffice-qt6
-    pkgs.seahorse
     pkgs.calibre
     pkgs.pwvucontrol
     pkgs.ttyper
@@ -60,12 +59,35 @@
     pkgs.heroic
     pkgs.ncspot
     pkgs.anki-bin
+    pkgs.digikam
 
     #neovim
     pkgs.neovim
     pkgs.wl-clipboard
     pkgs.ripgrep
     pkgs.gcc
+    pkgs.efm-langserver
+    pkgs.nodejs
+
+    # language servers
+    # lua
+    pkgs.lua-language-server
+    pkgs.luajitPackages.luacheck
+    pkgs.stylua
+    # python
+    pkgs.pyright
+    pkgs.black
+    pkgs.python313Packages.flake8
+    # typescript
+    pkgs.typescript-language-server
+    pkgs.eslint
+    pkgs.prettier # do a lot of languages
+    # json
+    pkgs.fixjson
+
+
+    # for live-server plugin
+    pkgs.live-server
 
 
     # Compressor/Extraction utilities
