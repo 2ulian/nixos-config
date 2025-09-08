@@ -59,7 +59,6 @@
     pkgs.heroic
     pkgs.ncspot
     pkgs.anki-bin
-    pkgs.digikam
 
     #neovim
     pkgs.neovim
@@ -96,6 +95,20 @@
     pkgs.unzip
     pkgs.unrar
     pkgs.xz
+
+
+    # dépendance projet de merde
+    pkgs.python313
+    pkgs.python313Packages.blinker
+    pkgs.python313Packages.click
+    pkgs.python313Packages.flask
+    pkgs.python313Packages.importlib-metadata
+    pkgs.python313Packages.itsdangerous
+    pkgs.python313Packages.jinja2
+    pkgs.python313Packages.markupsafe
+    pkgs.python313Packages.werkzeug
+    pkgs.python313Packages.zipp
+
   ];
 
   services.syncthing.enable = true;

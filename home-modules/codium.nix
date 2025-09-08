@@ -9,6 +9,7 @@
       esbenp.prettier-vscode
       vscodevim.vim
       ritwickdey.liveserver
+      github.copilot
     ];
 
     # Tu peux aussi ajouter des extensions depuis nixpkgs non packagées avec :
