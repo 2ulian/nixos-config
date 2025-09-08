@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fellwin";
@@ -24,6 +27,7 @@
     ./eclipse.nix
     ./opsec.nix
     ./fish.nix
+    ./neovim.nix
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -60,35 +64,6 @@
     pkgs.ncspot
     pkgs.anki-bin
 
-    #neovim
-    pkgs.neovim
-    pkgs.wl-clipboard
-    pkgs.ripgrep
-    pkgs.gcc
-    pkgs.efm-langserver
-    pkgs.nodejs
-
-    # language servers
-    # lua
-    pkgs.lua-language-server
-    pkgs.luajitPackages.luacheck
-    pkgs.stylua
-    # python
-    pkgs.pyright
-    pkgs.black
-    pkgs.python313Packages.flake8
-    # typescript
-    pkgs.typescript-language-server
-    pkgs.eslint
-    pkgs.prettier # do a lot of languages
-    # json
-    pkgs.fixjson
-
-
-    # for live-server plugin
-    pkgs.live-server
-
-
     # Compressor/Extraction utilities
     pkgs.zip
     pkgs.p7zip
@@ -96,19 +71,8 @@
     pkgs.unrar
     pkgs.xz
 
-
-    # dépendance projet de merde
+    # Python
     pkgs.python313
-    pkgs.python313Packages.blinker
-    pkgs.python313Packages.click
-    pkgs.python313Packages.flask
-    pkgs.python313Packages.importlib-metadata
-    pkgs.python313Packages.itsdangerous
-    pkgs.python313Packages.jinja2
-    pkgs.python313Packages.markupsafe
-    pkgs.python313Packages.werkzeug
-    pkgs.python313Packages.zipp
-
   ];
 
   services.syncthing.enable = true;
@@ -155,8 +119,8 @@
       package = pkgs.papirus-icon-theme;
     };
     # Force dark mode
-    gtk3.extraConfig = { "gtk-application-prefer-dark-theme" = 1; };
-    gtk4.extraConfig = { "gtk-application-prefer-dark-theme" = 1; };
+    gtk3.extraConfig = {"gtk-application-prefer-dark-theme" = 1;};
+    gtk4.extraConfig = {"gtk-application-prefer-dark-theme" = 1;};
   };
 
   home.sessionVariables = {
