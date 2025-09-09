@@ -27,7 +27,7 @@
     # json
     fixjson # linter
     # html
-    vscode-langservers-extracted # lsp
+    superhtml
     #bash
     bash-language-server
     #nix

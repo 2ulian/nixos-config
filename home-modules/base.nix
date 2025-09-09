@@ -63,6 +63,7 @@
     pkgs.heroic
     pkgs.ncspot
     pkgs.anki-bin
+    pkgs.emacs
 
     # Compressor/Extraction utilities
     pkgs.zip
