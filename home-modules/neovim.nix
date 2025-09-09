@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    neovim
     wl-clipboard
     ripgrep
     gcc
@@ -33,8 +32,18 @@
     #nix
     nixd #lsp
     alejandra #formatter
+    #java
+    jdt-language-server #lsp
+    maven # dependency management
+    #test
+    jdk21
+    javaPackages.openjfx21
 
     # for live-server plugin
     live-server
   ];
+
+  programs.neovim = {
+    enable = true;
+  };
 }
