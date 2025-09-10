@@ -60,9 +60,8 @@
     pkgs.ttyper
     pkgs.tmux
     pkgs.lutris
-    pkgs.heroic
     pkgs.ncspot
-    pkgs.anki-bin
+    pkgs.anki
     pkgs.emacs
 
     # Compressor/Extraction utilities
