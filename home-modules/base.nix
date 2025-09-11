@@ -21,11 +21,10 @@
     ./librewolf.nix
     ./codium.nix
     ./git.nix
-    ./obs.nix
-    ./spicetify.nix
+    #./obs.nix
     ./zsh.nix
     ./eclipse.nix
-    ./opsec.nix
+    #./opsec.nix
     ./fish.nix
     ./neovim.nix
   ];
@@ -59,7 +58,7 @@
     pkgs.pwvucontrol
     pkgs.ttyper
     pkgs.tmux
-    pkgs.lutris
+    #pkgs.lutris # not compatible with arch64
     pkgs.ncspot
     pkgs.anki
     pkgs.emacs
@@ -72,7 +71,7 @@
     pkgs.xz
 
     # Python
-    pkgs.python313
+    #pkgs.python313
   ];
 
   services.syncthing.enable = true;

@@ -2,13 +2,15 @@
 
 {
   programs.hyprland.enable = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebengine-5.15.19"
+  ];
 
   imports =
     [
       ./firewall.nix
-      ./gaming.nix
-      ./virtualization.nix
-      ./mullvad.nix
+      #./virtualization.nix
+      #./mullvad.nix
     ];
 
   # Bootloader.
@@ -52,7 +54,7 @@
     # i2c to control luminosity on external display
     extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [];
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -63,13 +65,15 @@
   # enable dconf
   programs.dconf.enable = true;
   # Enable automatic login for the user.
-  #services.getty.autologinUser = "fellwin";
+  services.getty.autologinUser = "fellwin";
 
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #make
+    vim
+    git
   ];
 
   # List services that you want to enable:

@@ -1,5 +1,12 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [
+    pkgs.lsd
+  ];
+
   programs.zsh = {
     enable = true;
 
@@ -10,10 +17,10 @@
 
     #plugins = [
     #  {
-      #    name = "zsh-vi-mode";
-      #    src = pkgs.zsh-vi-mode;
-      #    file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      #  }
+    #    name = "zsh-vi-mode";
+    #    src = pkgs.zsh-vi-mode;
+    #    file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+    #  }
     #];
 
     # .zshrc
@@ -42,9 +49,9 @@
     '';
 
     shellAliases = {
-    #  update = "sudo nixos-rebuild switch --flake ~/dotfiles";
       vim = "nvim";
+      ls = "lsd";
+      ll = "lsd -l";
     };
-
   };
 }
