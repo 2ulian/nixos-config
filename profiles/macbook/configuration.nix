@@ -8,9 +8,9 @@
   imports = [
     ../../modules/base.nix
     ../../modules/battery.nix
-    ../../modules/docker.nix
-    ./apple-silicon-support
+    #./apple-silicon-support
     ./hardware-configuration.nix
+    <apple-silicon-support/apple-silicon-support>
   ];
 
   networking.hostName = "mac"; # Define your hostname.
@@ -23,9 +23,13 @@
   hardware.asahi = {
     enable = true;
     setupAsahiSound = true;
-    peripheralFirmwareDirectory = ./firmware;
+    peripheralFirmwareDirectory = /boot/asahi;
   };
 
+  # patched hyprland
+  programs.hyprland = {
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  };
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = [
@@ -33,16 +37,20 @@
     ];
   };
 
+  # enable opengl
   hardware.graphics.enable = true;
-
-  programs.hyprland = {
-    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  };
 
   # Get the fullscreen
   boot.kernelParams = [
-    #"apple_dcp.show_notch=1"
+    "apple_dcp.show_notch=1"
   ];
 
   services.auto-cpufreq.enable = lib.mkForce false;
+
+  # Emulate x86 apps on arm
+  boot.kernel.sysctl = {"vm.max_map_count" = 262144;};
+  nix.settings.extra-platforms = ["x86_64-linux"];
+  nix.settings.trusted-users = ["fellwin"];
+  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+  security.unprivilegedUsernsClone = true;
 }

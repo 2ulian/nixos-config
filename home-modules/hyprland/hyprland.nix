@@ -1,18 +1,19 @@
-{ config, pkgs, lib, ... }:
-
 {
-  # temporaire car cve
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebengine-5.15.19"
-  ];
-
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     #./illogical-impulse.nix
   ];
   home.packages = [
     # required packages for hyprland:
     pkgs.brillo
+    pkgs.brightnessctl
     pkgs.hyprshot
+    pkgs.hyprlock
+    pkgs.hypridle
     pkgs.hyprsunset
     pkgs.hyprpicker
     pkgs.hyprpolkitagent

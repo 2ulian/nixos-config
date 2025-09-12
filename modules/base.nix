@@ -1,17 +1,16 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.hyprland.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebengine-5.15.19"
-  ];
 
-  imports =
-    [
-      ./firewall.nix
-      #./virtualization.nix
-      #./mullvad.nix
-    ];
+  imports = [
+    ./firewall.nix
+    ./lamp.nix
+    #./virtualization.nix
+    #./mullvad.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -52,13 +51,10 @@
     isNormalUser = true;
     description = "fellwin";
     # i2c to control luminosity on external display
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = ["networkmanager" "wheel" "video"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
 
@@ -67,11 +63,9 @@
   # Enable automatic login for the user.
   services.getty.autologinUser = "fellwin";
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #make
     vim
     git
   ];
@@ -90,6 +84,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }

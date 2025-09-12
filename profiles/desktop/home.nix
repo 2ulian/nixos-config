@@ -2,12 +2,10 @@
 
 {
   imports = [
-    #./shellScript.nix
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
     ../../home-modules/hyprland/hyprland.nix
     ../../home-modules/hyprland/illogical-impulse.nix
-    ./shellScript.nix
   ];
 
   home.packages = [

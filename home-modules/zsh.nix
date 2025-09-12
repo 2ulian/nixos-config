@@ -5,6 +5,7 @@
 }: {
   home.packages = [
     pkgs.lsd
+    pkgs.zoxide
   ];
 
   programs.zsh = {
@@ -52,6 +53,7 @@
       vim = "nvim";
       ls = "lsd";
       ll = "lsd -l";
+      update = "sudo nixos-rebuild switch --flake ~/nixos-config/ --impure";
     };
   };
 }

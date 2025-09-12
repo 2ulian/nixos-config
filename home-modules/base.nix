@@ -16,20 +16,17 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
-
   imports = [
     ./librewolf.nix
-    ./codium.nix
+    ./vscode/codium.nix
     ./git.nix
     #./obs.nix
     ./zsh.nix
     ./eclipse.nix
     #./opsec.nix
-    ./fish.nix
+    #./fish.nix
     ./neovim.nix
   ];
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -47,7 +44,7 @@
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
-    pkgs.stremio
+    #pkgs.stremio #depend on qtwebengine which is not updated
     pkgs.nemo-with-extensions
     pkgs.file-roller
     pkgs.nemo-fileroller
@@ -62,6 +59,7 @@
     pkgs.ncspot
     pkgs.anki
     pkgs.emacs
+    pkgs.gimp
 
     # Compressor/Extraction utilities
     pkgs.zip

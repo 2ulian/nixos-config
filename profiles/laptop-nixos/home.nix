@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./shellScript.nix
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
     ../../home-modules/hyprland/hyprland.nix

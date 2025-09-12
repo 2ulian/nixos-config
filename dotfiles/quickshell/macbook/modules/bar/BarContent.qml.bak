@@ -66,6 +66,7 @@ Item { // Bar content region
             if (event.button === Qt.LeftButton)
                 GlobalStates.sidebarLeftOpen = !GlobalStates.sidebarLeftOpen;
         }
+
         // Visual content
         ScrollHint {
             reveal: barLeftSideMouseArea.hovered
@@ -79,55 +80,20 @@ Item { // Bar content region
         RowLayout {
             id: leftSectionRowLayout
             anchors.fill: parent
-            spacing: 0
+            spacing: 10
 
-            // Apple logo
-            RippleButton {
+            LeftSidebarButton { // Left sidebar button
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: Appearance.rounding.screenRounding
-                buttonRadius: Appearance.rounding.full
-                colBackground: barLeftSideMouseArea.hovered
-                    ? Appearance.colors.colLayer1Hover
-                    : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
-
-                Text {
-                    anchors.centerIn: parent
-                    text: ""
-                    font.family: "Nerd Font"
-                    font.pixelSize: Appearance.font.pixelSize.large
-                    color: Appearance.colors.colOnLayer0
-                }
-
-                onPressed: {
-                    GlobalStates.sidebarLeftOpen = !GlobalStates.sidebarLeftOpen;
-                }
+                colBackground: barLeftSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
             }
 
-            //ActiveWindow {
-            //    visible: root.useShortenedForm === 0
-            //    Layout.rightMargin: Appearance.rounding.screenRounding
-            //    Layout.fillWidth: true
-            //    Layout.fillHeight: true
-            //}
-            Workspaces {
-                id: workspacesWidgetLeft
+            ActiveWindow {
+                visible: root.useShortenedForm === 0
+                Layout.rightMargin: Appearance.rounding.screenRounding
+                Layout.fillWidth: true
                 Layout.fillHeight: true
-                MouseArea {
-                    // Right-click to toggle overview
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-                    // avoid scroll to change workspace
-                    onWheel: event => {
-                        event.accepted = true
-                    }
-                    onPressed: event => {
-                        if (event.button === Qt.RightButton) {
-                            GlobalStates.overviewOpen = !GlobalStates.overviewOpen;
-                        }
-                    }
-                }
             }
-
         }
     }
 
@@ -162,12 +128,22 @@ Item { // Bar content region
 
         BarGroup {
             id: middleCenterGroup
-            Layout.fillWidth: true
-            padding: 117
-            Item {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            padding: workspacesWidget.widgetPadding
 
+            Workspaces {
+                id: workspacesWidget
+                Layout.fillHeight: true
+                MouseArea {
+                    // Right-click to toggle overview
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton
+
+                    onPressed: event => {
+                        if (event.button === Qt.RightButton) {
+                            GlobalStates.overviewOpen = !GlobalStates.overviewOpen;
+                        }
+                    }
+                }
             }
         }
 
