@@ -5,7 +5,6 @@
 }: {
   home.packages = [
     pkgs.lsd
-    pkgs.zoxide
   ];
 
   programs.zsh = {

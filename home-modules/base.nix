@@ -72,6 +72,14 @@
     #pkgs.python313
   ];
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    options = ["--cmd cd"];
+  };
+
   services.syncthing.enable = true;
 
   home.file = {
