@@ -33,7 +33,6 @@ input {
     touchpad {
         natural_scroll = true
     }
-    # make right command key as altgr
     kb_options = lv3:rwin_switch
 }
 
