@@ -52,7 +52,6 @@
     description = "fellwin";
     # i2c to control luminosity on external display
     extraGroups = ["networkmanager" "wheel" "video"];
-    packages = with pkgs; [];
     shell = pkgs.zsh;
   };
 

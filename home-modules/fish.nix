@@ -1,6 +1,9 @@
-{ config, pkgs, lib,... }:
 {
-
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = [
     pkgs.lsd
   ];
@@ -26,18 +29,34 @@
 
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
-      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
-      { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
-      { name = "done"; src = pkgs.fishPlugins.done.src; }
-      { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-      { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
+      #{ name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      {
+        name = "sponge";
+        src = pkgs.fishPlugins.sponge.src;
+      }
+      {
+        name = "fzf";
+        src = pkgs.fishPlugins.fzf.src;
+      }
+      {
+        name = "done";
+        src = pkgs.fishPlugins.done.src;
+      }
+      {
+        name = "autopair";
+        src = pkgs.fishPlugins.autopair.src;
+      }
+      {
+        name = "colored-man-pages";
+        src = pkgs.fishPlugins.colored-man-pages.src;
+      }
     ];
 
     shellAliases = {
       vim = "nvim";
       ls = "lsd";
       ll = "lsd -l";
+      update = "sudo nixos-rebuild switch --flake ~/nixos-config/ --impure";
     };
   };
 }

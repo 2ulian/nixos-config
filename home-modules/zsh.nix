@@ -15,29 +15,35 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
+    history = {
+      size = 10000;
+      save = 10000;
+      share = true;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      expireDuplicatesFirst = true;
+      ignoreSpace = true;
+    };
 
-    #plugins = [
-    #  {
-    #    name = "zsh-vi-mode";
-    #    src = pkgs.zsh-vi-mode;
-    #    file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-    #  }
-    #];
+    plugins = [
+      {
+        name = "zsh-autopair";
+        src = pkgs.zsh-autopair;
+        file = "share/zsh/zsh-autopair/autopair.zsh";
+      }
+    ];
 
     # .zshrc
     initContent = ''
       # pywal
       (cat ~/.cache/wal/sequences &)
 
-      # to not get the vim mode
+      # emacs mode
       bindkey -e
 
       # Configuration of powerlevel10k
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-      # vi mode
-      #ZVM_CURSOR_STYLE_ENABLED=true
 
       # Configuration of historySubstringSearch
       zmodload zsh/terminfo
