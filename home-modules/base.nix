@@ -60,6 +60,7 @@
     pkgs.anki
     pkgs.emacs
     pkgs.gimp
+    pkgs.openfortivpn
 
     # Compressor/Extraction utilities
     pkgs.zip
