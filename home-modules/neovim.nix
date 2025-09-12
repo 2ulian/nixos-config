@@ -41,6 +41,9 @@
 
     # for live-server plugin
     live-server
+
+    # for msql support in dadbod
+    sqlcmd
   ];
 
   programs.neovim = {
