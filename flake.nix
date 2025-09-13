@@ -34,7 +34,6 @@
   in {
     nixosConfigurations = {
       T480 = nixpkgs.lib.nixosSystem {
-        #inherit system;
         pkgs = mkPkgs systems.x86;
         system = systems.x86;
         modules = [

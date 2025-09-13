@@ -34,6 +34,12 @@
     alejandra #formatter
     #java
     jdt-language-server #lsp
+    #rust
+    rust-analyzer # lsp
+    vscode-extensions.vadimcn.vscode-lldb # lsp debugger
+
+    # rust dependencies
+    cargo
 
     #java dependencies
     maven # dependency management
