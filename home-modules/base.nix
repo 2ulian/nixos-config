@@ -54,7 +54,15 @@
     pkgs.calibre
     pkgs.pwvucontrol
     pkgs.ttyper
+    # tmux
     pkgs.tmux
+    # to avoid neovim glitching with tmux
+    pkgs.ncurses
+
+
+
+
+
     #pkgs.lutris # not compatible with arch64
     pkgs.ncspot
     pkgs.anki

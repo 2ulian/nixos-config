@@ -34,8 +34,9 @@
     alejandra #formatter
     #java
     jdt-language-server #lsp
+
+    #java dependencies
     maven # dependency management
-    #test
     jdk21
     javaPackages.openjfx21
 
