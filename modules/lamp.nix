@@ -5,9 +5,8 @@
   ...
 }: {
   systemd.tmpfiles.rules = [
-    "d /var/www 0755 root root -"
-    "d /var/www/localhost 0755 root root -"
-    "f /var/www/localhost/index.php 0644 root root - <?php phpinfo();"
+    "d /var/www 0755 fellwin users -"
+    "d /var/www/localhost/ 0755 fellwin users -"
   ];
 
   services.httpd = {
@@ -32,7 +31,7 @@
     enable = true;
     package = pkgs.mariadb;
     initialDatabases = [
-      {name = "testdb";}
+      {name = "monsite";}
     ];
   };
 }

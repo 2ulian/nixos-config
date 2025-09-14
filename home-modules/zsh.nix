@@ -60,6 +60,7 @@
       ll = "lsd -l";
       update = "sudo nixos-rebuild switch --flake ~/nixos-config/ --impure";
       vpniut = "sudo openfortivpn u-vpn-plus.unilim.fr --saml-login";
+      bdd = "nvim +':DBUI' ";
     };
   };
 }
