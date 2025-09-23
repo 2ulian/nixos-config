@@ -3,55 +3,41 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./uniliste.nix
+  ];
   home.packages = with pkgs; [
+    # neovim dependencies
     wl-clipboard
     ripgrep
     gcc
-    efm-langserver
     nodejs
 
     # language servers
-    # lua
-    lua-language-server # lsp
-    luajitPackages.luacheck # linter
-    stylua # formatter
-    # python
-    pyright # lsp
-    black # formatter
-    python313Packages.flake8 # linter
-    # typescript
-    typescript-language-server
-    eslint # linter
-    prettier # formatter for a lot of languages
-    # json
-    fixjson # linter
     # html/css
     vscode-langservers-extracted # lsp for html, css, json
-    # php
-    intelephense # lsp
-    php84Packages.php-cs-fixer
-    php84Packages.php-codesniffer
-    phpactor
     #twig
     twig-language-server
-    #bash
-    bash-language-server
     #nix
     nixd #lsp
-    alejandra #formatter
     #java
     jdt-language-server #lsp
+    sonarlint-ls
     #rust
     rust-analyzer # lsp
-    lldb # to get lldb-dap
+    # lldb # to get lldb-dap
+    #vuejs
+    vue-language-server
+
+    rustfmt # rust formatter
 
     # rust dependencies
+    rustc
     cargo
+    rustlings # to train
 
     #java dependencies
     maven # dependency management
-    jdk21
-    javaPackages.openjfx21
 
     # for live-server plugin
     live-server
@@ -59,16 +45,17 @@
     # for msql support in dadbod
     sqlcmd
 
-    # To get google ai api for avante
-    litellm
     # dependency of avante:
     gnumake
 
     # python
     python3
+
+    # to install lua dependencies(required for mason)
+    luarocks
   ];
 
-  # Make sure mason's bin directory is in your PATH
+  # to add mason bin, make sure to have nix-ld enabled
   home.sessionPath = [
     "$HOME/.local/share/nvim/mason/bin"
   ];

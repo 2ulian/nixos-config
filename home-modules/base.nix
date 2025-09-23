@@ -56,8 +56,11 @@
     pkgs.ttyper
     # tmux
     pkgs.tmux
+    pkgs.ncdu
     # to avoid neovim glitching with tmux
-    pkgs.ncurses
+    #pkgs.ncurses
+
+    pkgs.tree
 
 
 

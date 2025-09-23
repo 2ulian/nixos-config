@@ -7,7 +7,8 @@
 
   imports = [
     ./firewall.nix
-    ./lamp.nix
+    ./docker.nix
+    ./nixld.nix
     #./virtualization.nix
     #./mullvad.nix
   ];
