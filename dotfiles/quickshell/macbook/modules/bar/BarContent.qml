@@ -96,8 +96,8 @@ Item { // Bar content region
                 Text {
                     anchors.centerIn: parent
                     //icon
-                    //text: ""
-                    text: ""
+                    text: ""
+                    //text: ""
                     //text: ""
                     font.family: "Nerd Font"
                     font.pixelSize: Appearance.font.pixelSize.large

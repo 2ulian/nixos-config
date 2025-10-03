@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fellwin";
@@ -84,7 +85,7 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
 
   services.syncthing.enable = true;
@@ -136,8 +137,12 @@
       package = pkgs.papirus-icon-theme;
     };
     # Force dark mode
-    gtk3.extraConfig = {"gtk-application-prefer-dark-theme" = 1;};
-    gtk4.extraConfig = {"gtk-application-prefer-dark-theme" = 1;};
+    gtk3.extraConfig = {
+      "gtk-application-prefer-dark-theme" = 1;
+    };
+    gtk4.extraConfig = {
+      "gtk-application-prefer-dark-theme" = 1;
+    };
   };
 
   home.sessionVariables = {
