@@ -9,6 +9,7 @@
     ./firewall.nix
     ./docker.nix
     ./nixld.nix
+    ./emacs.nix
     #./virtualization.nix
     #./mullvad.nix
   ];

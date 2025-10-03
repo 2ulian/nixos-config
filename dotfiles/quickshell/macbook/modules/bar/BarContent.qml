@@ -41,7 +41,10 @@ Item { // Bar content region
             fill: parent
             margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
         }
-        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        // default settings:
+        //color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        // to make the bar transparent
+        color: "#00000000"
         radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
         border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
         border.color: Appearance.colors.colLayer0Border
@@ -92,7 +95,10 @@ Item { // Bar content region
 
                 Text {
                     anchors.centerIn: parent
-                    text: ""
+                    //icon
+                    //text: ""
+                    text: ""
+                    //text: ""
                     font.family: "Nerd Font"
                     font.pixelSize: Appearance.font.pixelSize.large
                     color: Appearance.colors.colOnLayer0

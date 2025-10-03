@@ -62,14 +62,9 @@
 
     pkgs.tree
 
-
-
-
-
     #pkgs.lutris # not compatible with arch64
     pkgs.ncspot
     pkgs.anki
-    pkgs.emacs
     pkgs.gimp
     pkgs.openfortivpn
 
@@ -93,6 +88,11 @@
   };
 
   services.syncthing.enable = true;
+
+  # for emacs
+  home.sessionPath = [
+    "$HOME/.config/emacs/bin/"
+  ];
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in

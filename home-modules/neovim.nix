@@ -19,21 +19,23 @@
     #twig
     twig-language-server
     #nix
-    nixd #lsp
+    nixd # lsp
+    nixfmt
     #java
-    jdt-language-server #lsp
+    jdt-language-server # lsp
     sonarlint-ls
-    #rust
-    rust-analyzer # lsp
     # lldb # to get lldb-dap
     #vuejs
     vue-language-server
+    #php
+    phpPackages.php-codesniffer
+    # prettier
+    prettier
 
-    rustfmt # rust formatter
+    clang-tools # lsp for c/c++
 
     # rust dependencies
-    rustc
-    cargo
+    rustup
     rustlings # to train
 
     #java dependencies
@@ -53,11 +55,21 @@
 
     # to install lua dependencies(required for mason)
     luarocks
+
+    # to compile emacs vterm
+    cmake
+    libtool
+
+    # spell checking
+    ispell
+
+    # to enable copilot in emacs
+    copilot-language-server
   ];
 
   # to add mason bin, make sure to have nix-ld enabled
   home.sessionPath = [
-    "$HOME/.local/share/nvim/mason/bin"
+    #$HOME/.local/share/nvim/mason/bin"
   ];
 
   programs.neovim = {

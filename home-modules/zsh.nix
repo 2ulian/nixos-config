@@ -62,6 +62,7 @@
       vpniut = "sudo openfortivpn u-vpn-plus.unilim.fr --saml-login";
       bdd = "nvim +':DBUI' ";
       avante = "nvim -c 'lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)'";
+      e = "emacsclient -nw -c -a 'emacs'";
     };
   };
 }

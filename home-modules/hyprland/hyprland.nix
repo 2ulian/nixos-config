@@ -13,6 +13,7 @@
     pkgs.brightnessctl
     pkgs.hyprshot
     pkgs.hyprlock
+    pkgs.hyprshade
     pkgs.hypridle
     pkgs.hyprsunset
     pkgs.hyprpicker
