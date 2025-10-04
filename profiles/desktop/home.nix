@@ -17,6 +17,8 @@
     pkgs.spice-protocol
     pkgs.win-virtio
     pkgs.win-spice
+
+    pkgs.calibre
   ];
 
   xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;

@@ -6,14 +6,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    hyprland.url = "github:gulafaran/Hyprland?ref=rendernode";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     spicetify-nix,
-    hyprland,
     ...
   }: let
     systems = {
@@ -68,7 +66,6 @@
       mac = nixpkgs.lib.nixosSystem {
         pkgs = mkPkgs systems.arm;
         system = systems.arm;
-        specialArgs = {inherit hyprland;};
         modules = [
           ./profiles/macbook/configuration.nix
           home-manager.nixosModules.home-manager

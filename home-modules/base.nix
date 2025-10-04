@@ -52,7 +52,6 @@
     pkgs.parsec-bin
     pkgs.qbittorrent-enhanced
     pkgs.libreoffice-qt6
-    pkgs.calibre
     pkgs.pwvucontrol
     pkgs.ttyper
     # tmux
