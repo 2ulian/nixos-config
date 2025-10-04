@@ -41,7 +41,9 @@ Item { // Bar content region
             fill: parent
             margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
         }
-        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        //color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        // to make the bar transparent
+        color: "#00000000"
         radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
         border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
         border.color: Appearance.colors.colLayer0Border
@@ -81,11 +83,28 @@ Item { // Bar content region
             id: leftSectionRowLayout
             anchors.fill: parent
             spacing: 10
-
-            LeftSidebarButton { // Left sidebar button
+            RippleButton {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: Appearance.rounding.screenRounding
-                colBackground: barLeftSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
+                buttonRadius: Appearance.rounding.full
+                colBackground: barLeftSideMouseArea.hovered
+                    ? Appearance.colors.colLayer1Hover
+                    : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
+
+                Text {
+                    anchors.centerIn: parent
+                    //icon
+                    text: ""
+                    //text: ""
+                    //text: ""
+                    font.family: "Nerd Font"
+                    font.pixelSize: Appearance.font.pixelSize.large
+                    color: Appearance.colors.colOnLayer0
+                }
+
+                onPressed: {
+                    GlobalStates.sidebarLeftOpen = !GlobalStates.sidebarLeftOpen;
+                }
             }
 
             ActiveWindow {
