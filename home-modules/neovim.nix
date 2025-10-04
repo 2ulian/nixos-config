@@ -76,5 +76,4 @@
   programs.neovim = {
     enable = true;
   };
-  programs._1password.enable = true;
 }
