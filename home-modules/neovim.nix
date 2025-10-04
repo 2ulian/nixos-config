@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./uniliste.nix
   ];
@@ -75,4 +76,5 @@
   programs.neovim = {
     enable = true;
   };
+  programs._1password.enable = true;
 }
