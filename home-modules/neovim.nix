@@ -52,7 +52,8 @@
     gnumake
 
     # python
-    python3
+    python313
+    python313Packages.pip
 
     # to install lua dependencies(required for mason)
     luarocks
@@ -66,6 +67,9 @@
 
     # to enable copilot in emacs
     copilot-language-server
+
+    # to enable aider.el plugin to get ai editing
+    aider-chat-full
   ];
 
   # to add mason bin, make sure to have nix-ld enabled
