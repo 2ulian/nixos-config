@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.hyprland.enable = true;
 
   imports = [
@@ -10,6 +11,7 @@
     ./docker.nix
     ./nixld.nix
     ./emacs.nix
+    ./git.nix
     #./virtualization.nix
     #./mullvad.nix
   ];
@@ -53,7 +55,11 @@
     isNormalUser = true;
     description = "fellwin";
     # i2c to control luminosity on external display
-    extraGroups = ["networkmanager" "wheel" "video"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -85,5 +91,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

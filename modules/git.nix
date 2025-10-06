@@ -3,8 +3,8 @@
 {
   programs.git = {
     enable = true;
-    extraConfig = {
-      credential.helper = "libsecret";
+    config = {
+      credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
     };
   };
 
