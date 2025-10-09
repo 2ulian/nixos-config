@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   home.packages = [
     pkgs.lsd
   ];
@@ -59,6 +60,7 @@
       ls = "lsd";
       ll = "lsd -l";
       update = "sudo nixos-rebuild switch --flake ~/nixos-config/ --impure";
+      clean = "sudo nix-collect-garbage -d";
       vpniut = "sudo openfortivpn u-vpn-plus.unilim.fr --saml-login";
       bdd = "nvim +':DBUI' ";
       avante = "nvim -c 'lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)'";
