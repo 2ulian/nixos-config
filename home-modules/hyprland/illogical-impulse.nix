@@ -2,7 +2,6 @@
 
 {
 
-
   home.packages = with pkgs; [
 
     quickshell
@@ -36,7 +35,4 @@
     gsettings-qt
     matugen
   ];
-
-  xdg.configFile."quickshell".source = ../../dotfiles/quickshell;
-
 }
