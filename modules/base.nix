@@ -12,7 +12,6 @@
     ./nixld.nix
     ./emacs.nix
     ./git.nix
-    ./filter.nix
     #./virtualization.nix
     #./mullvad.nix
   ];
