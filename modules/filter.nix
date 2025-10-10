@@ -8,15 +8,7 @@ let
   flakeDirectoryPath = "/home/fellwin/nixos-config/";
   protectedItems = [
     {
-      path = "/home/fellwin/nixos-config/flake.nix";
-      owner = "root";
-      group = "root";
-      mode = "0444";
-      recursive = false;
-    }
-
-    {
-      path = "/home/fellwin/nixos-config/stores.txt";
+      path = "/home/fellwin/nixos-config/test";
       owner = "root";
       group = "root";
       mode = "0444";
@@ -102,6 +94,13 @@ in
     ${protectScript}
   '';
 
+  system.activationScripts.updateHostsOnSwitch = lib.mkForce ''
+    ${pkgs.e2fsprogs}/bin/chattr -i /etc/hosts >/dev/null 2>&1
+    rm -f /etc/hosts >/dev/null 2>&1
+    ${pkgs.curl}/bin/curl -fSL --retry 3 --connect-timeout 10 -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
+    ${pkgs.e2fsprogs}/bin/chattr +i /etc/hosts
+  '';
+
   # nixos-rebuild wrapper
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "nixos-rebuild-secure" ''
@@ -137,94 +136,14 @@ in
       exec ${pkgs.nixos-rebuild}/bin/nixos-rebuild "$@"
     '')
   ];
-  systemd.services.update-hosts = {
-    description = "Update /etc/hosts from StevenBlack list";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.curl}/bin/curl -fSL --retry 3 --connect-timeout 10 -o /var/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  system.activationScripts.updateHostsOnSwitch = ''
-    ${pkgs.systemd}/bin/systemctl start update-hosts.service || true
-  '';
-
-  networking.extraHosts = ''
-    # --- Fichier StevenBlack ---
-  ''
-  + builtins.readFile "/var/hosts"
-  + ''
-    0.0.0.0 addons.mozilla.org
-    0.0.0.0 chromewebstore.google.com
-    0.0.0.0 clients2.google.com
-    0.0.0.0 clients2.googleusercontent.com
-  '';
-
-  services.blocky = lib.mkForce {
-    enable = true;
-    settings = {
-      ports.dns = 53;
-      upstreams.groups.default = [
-        "https://one.one.one.one/dns-query"
-      ];
-      bootstrapDns = {
-        upstream = "https://one.one.one.one/dns-query";
-        ips = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-      };
-      blocking = {
-        denylists = {
-          ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
-          adult = [ "https://blocklistproject.github.io/Lists/porn.txt" ];
-        };
-        clientGroupsBlock = {
-          default = [
-            "ads"
-            "adult"
-          ];
-        };
-      };
-    };
-  };
-  networking.nameservers = lib.mkForce [
-    "1.1.1.3"
-    "::1"
-  ];
-  networking.networkmanager.dns = lib.mkForce "none";
-  services.resolved.enable = lib.mkForce false;
-
   networking.nftables.enable = lib.mkForce true;
   networking.nftables.ruleset = lib.mkForce ''
     table inet filter {
       chain output {
         type filter hook output priority 0;
-
-        # drop DNS-over-TLS
-        tcp dport 853 drop
-
         # drop tor ports
         tcp dport { 9001, 9030, 9050, 9150 } drop
       }
     }
   '';
-
-  programs.firefox = lib.mkForce {
-    enable = true;
-    policies = {
-      DNSOverHTTPS = {
-        Enabled = false;
-      };
-      Preferences = {
-        "network.trr.mode" = {
-          Value = 5;
-          Status = "locked";
-        };
-      };
-    };
-  };
 }
