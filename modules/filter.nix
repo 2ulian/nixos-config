@@ -8,7 +8,7 @@ let
   flakeDirectoryPath = "/home/fellwin/nixos-config/";
   protectedItems = [
     {
-      path = "/home/fellwin/nixos-config/test";
+      path = "/home/fellwin/nixos-config/modules/filter.nix";
       owner = "root";
       group = "root";
       mode = "0444";
@@ -56,6 +56,7 @@ let
 in
 {
   security.sudo.enable = lib.mkForce true;
+  security.doas.enable = lib.mkForce false;
   users.users.root.hashedPassword = lib.mkForce "!";
 
   security.sudo.extraConfig = lib.mkForce ''
@@ -98,31 +99,33 @@ in
     if [ ! -e /var/hosts ]; then
       ${pkgs.curl}/bin/curl -fSL --retry 3 --connect-timeout 10 -o /var/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
       ${pkgs.e2fsprogs}/bin/chattr +i /var/hosts
-    fi
-    ${pkgs.e2fsprogs}/bin/chattr -i /etc/hosts >/dev/null 2>&1
-    rm -f /etc/hosts >/dev/null 2>&1
-    cp /var/hosts /etc/hosts
-    echo "
-      # Chrome Web Store
-      0.0.0.0 chrome.google.com
-      0.0.0.0 clients.google.com
-      0.0.0.0 clients2.google.com
-      0.0.0.0 clients4.google.com
-      0.0.0.0 clients5.google.com
-      0.0.0.0 clients6.google.com
-      0.0.0.0 lh3.googleusercontent.com
-      0.0.0.0 lh4.googleusercontent.com
-      0.0.0.0 lh5.googleusercontent.com
-      0.0.0.0 lh6.googleusercontent.com
+      echo "ATTENTION: open librewolf/firefox to install extensions and then rebuild system"
+    else
+      ${pkgs.e2fsprogs}/bin/chattr -i /etc/hosts >/dev/null 2>&1
+      rm -f /etc/hosts >/dev/null 2>&1
+      cp /var/hosts /etc/hosts
+      echo "
+        # Chrome Web Store
+        0.0.0.0 chrome.google.com
+        0.0.0.0 clients.google.com
+        0.0.0.0 clients2.google.com
+        0.0.0.0 clients4.google.com
+        0.0.0.0 clients5.google.com
+        0.0.0.0 clients6.google.com
+        0.0.0.0 lh3.googleusercontent.com
+        0.0.0.0 lh4.googleusercontent.com
+        0.0.0.0 lh5.googleusercontent.com
+        0.0.0.0 lh6.googleusercontent.com
 
-      # Firefox Add-ons (AMO)
-      0.0.0.0 addons.mozilla.org
-      0.0.0.0 services.addons.mozilla.org
-      0.0.0.0 discovery.addons.mozilla.org
-      0.0.0.0 addons.cdn.mozilla.net
-      0.0.0.0 aus5.mozilla.org
-    " >> /etc/hosts
-    ${pkgs.e2fsprogs}/bin/chattr +i /etc/hosts
+        # Firefox Add-ons (AMO)
+        0.0.0.0 addons.mozilla.org
+        0.0.0.0 services.addons.mozilla.org
+        0.0.0.0 discovery.addons.mozilla.org
+        0.0.0.0 addons.cdn.mozilla.net
+        0.0.0.0 aus5.mozilla.org
+      " >> /etc/hosts
+      ${pkgs.e2fsprogs}/bin/chattr +i /etc/hosts
+    fi
   '';
 
   # nixos-rebuild wrapper
@@ -224,7 +227,7 @@ in
         exit 1
       fi
 
-      if [[ g -gt 2 ]]
+      if [[ $g -gt 2 ]]
       then
         echo "Error: cant rebuild system, you tried to add another nixos-rebuild wrapper"
         exit 1
@@ -248,13 +251,14 @@ in
     '')
   ];
 
+  networking.firewall.enable = lib.mkForce false;
   networking.nftables.enable = lib.mkForce true;
-  networking.nftables.ruleset = lib.mkForce ''
+  networking.nftables.ruleset = lib.mkBefore ''
     table inet filter {
       chain output {
         type filter hook output priority 0;
         tcp dport { 9001, 9030, 9050, 9150 } drop
-        iif "lo" accept
+        oif "lo" accept
         ct state established,related accept
 
         udp dport 53 accept
@@ -268,4 +272,5 @@ in
       }
     }
   '';
+
 }
