@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.librewolf; # Utiliser librewolf au lieu de firefox
     policies = {
-      /* ---- EXTENSIONS ---- */
+      # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.
       # Valid strings for installation_mode are "allowed", "blocked",
       # "force_installed" and "normal_installed".
@@ -76,10 +76,16 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
           installation_mode = "force_installed";
         };
+
+        # Vimium
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+          installation_mode = "force_installed";
+        };
       };
-      /* ---- PREFERENCES ---- */
+      # ---- PREFERENCES ----
       # Check about:config for options.
-      Preferences = { 
+      Preferences = {
         # "ui.systemUsesDarkTheme" = true; a mettre dans le user.js quand j'en aurais un
         "gfx.webrender.all" = true;
         "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
@@ -88,4 +94,3 @@
     };
   };
 }
-
