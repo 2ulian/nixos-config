@@ -95,9 +95,33 @@ in
   '';
 
   system.activationScripts.updateHostsOnSwitch = lib.mkForce ''
+    if [ ! -e /var/hosts ]; then
+      ${pkgs.curl}/bin/curl -fSL --retry 3 --connect-timeout 10 -o /var/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
+      ${pkgs.e2fsprogs}/bin/chattr +i /var/hosts
+    fi
     ${pkgs.e2fsprogs}/bin/chattr -i /etc/hosts >/dev/null 2>&1
     rm -f /etc/hosts >/dev/null 2>&1
-    ${pkgs.curl}/bin/curl -fSL --retry 3 --connect-timeout 10 -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts
+    cp /var/hosts /etc/hosts
+    echo "
+      # Chrome Web Store
+      0.0.0.0 chrome.google.com
+      0.0.0.0 clients.google.com
+      0.0.0.0 clients2.google.com
+      0.0.0.0 clients4.google.com
+      0.0.0.0 clients5.google.com
+      0.0.0.0 clients6.google.com
+      0.0.0.0 lh3.googleusercontent.com
+      0.0.0.0 lh4.googleusercontent.com
+      0.0.0.0 lh5.googleusercontent.com
+      0.0.0.0 lh6.googleusercontent.com
+
+      # Firefox Add-ons (AMO)
+      0.0.0.0 addons.mozilla.org
+      0.0.0.0 services.addons.mozilla.org
+      0.0.0.0 discovery.addons.mozilla.org
+      0.0.0.0 addons.cdn.mozilla.net
+      0.0.0.0 aus5.mozilla.org
+    " >> /etc/hosts
     ${pkgs.e2fsprogs}/bin/chattr +i /etc/hosts
   '';
 
@@ -106,6 +130,91 @@ in
     (pkgs.writeShellScriptBin "nixos-rebuild-secure" ''
       #!/usr/bin/env bash
       set -euo pipefail
+
+      require_filter_present() {
+        local FLAKE_PATH="''${FLAKE:-/home/fellwin/nixos-config/flake.nix}"
+
+        strip_comments() {
+          perl -0777 -pe 's:/\*.*?\*/::gs' "''${1}" | sed 's/#.*$//'
+        }
+
+        extract_nixos_configurations_block() {
+          awk '
+            /nixosConfigurations[[:space:]]*=/ {start=1}
+            start {
+              depth += gsub(/\{/, "{")
+              depth -= gsub(/\}/, "}")
+              print
+              if (start && depth==0) exit
+            }
+          '
+        }
+
+        discover_hosts() {
+          local content block
+          content="$(strip_comments "''${FLAKE_PATH}")"
+          block="$(printf "%s" "''${content}" | extract_nixos_configurations_block)"
+          printf "%s\n" "''${block}" | awk '
+            match($0, /^[[:space:]]*([A-Za-z0-9_-]+)[[:space:]]*=[[:space:]]*nixpkgs\.lib\.nixosSystem[[:space:]]*\{/, m) {
+              print m[1]
+            }
+          '
+        }
+
+        extract_host_block() {
+          local host="''${1}"
+          awk -v host="''${host}" '
+            $0 ~ "^[[:space:]]*"host"[[:space:]]*=[[:space:]]*nixpkgs\\.lib\\.nixosSystem[[:space:]]*\\{" {inb=1}
+            inb {print}
+            inb && /};/ {inb=0; exit}
+          '
+        }
+
+        local -a HOSTS_ARRAY=()
+        if [[ -n "''${HOSTS:-}" ]]; then
+          # shellcheck disable=SC2206
+          HOSTS_ARRAY=(''${HOSTS})
+        else
+          mapfile -t HOSTS_ARRAY < <(discover_hosts)
+        fi
+
+        if [[ "''${#HOSTS_ARRAY[@]}" -eq 0 ]]; then
+          echo "Aucun hôte détecté dans nixosConfigurations de ''${FLAKE_PATH}" >&2
+          exit 2
+        fi
+
+        if [[ ! -f "''${FLAKE_PATH}" ]]; then
+          echo "Fichier flake introuvable : ''${FLAKE_PATH}" >&2
+          exit 2
+        fi
+
+        local content overall=0
+        content="$(strip_comments "''${FLAKE_PATH}")"
+
+        for host in "''${HOSTS_ARRAY[@]}"; do
+          local block flat
+          block="$(printf "%s" "''${content}" | extract_host_block "''${host}")" || true
+          flat="$(printf "%s" "''${block}" | tr '\n' ' ')"
+
+          if [[ -z "''${block}" ]]; then
+            echo "''${host}: bloc nixpkgs.lib.nixosSystem introuvable." >&2
+            overall=1
+            continue
+          fi
+
+          if printf "%s" "''${flat}" | grep -qE 'modules[[:space:]]*=[[:space:]]*\[[^]]*./modules/filter\.nix'; then
+            echo "''${host}: ./modules/filter.nix trouvé (non commenté)"
+          else
+            echo "''${host}: ./modules/filter.nix NON trouvé (ou commenté/obfusqué)" >&2
+            overall=1
+          fi
+        done
+
+        if [[ "''${overall}" -ne 0 ]]; then
+          echo "Au moins une configuration manque l'import non commenté de ./modules/filter.nix. Arrêt." >&2
+          exit 1
+        fi
+      }
 
       ALLOWED="${flakeDirectoryPath}"
       g=$(grep -r '{pkgs.nixos-rebuild}/bin/nixos-rebuild' /home/fellwin/nixos-config/ | wc -l)
@@ -133,16 +242,29 @@ in
         exit 1
       fi
 
+      require_filter_present
+
       exec ${pkgs.nixos-rebuild}/bin/nixos-rebuild "$@"
     '')
   ];
+
   networking.nftables.enable = lib.mkForce true;
   networking.nftables.ruleset = lib.mkForce ''
     table inet filter {
       chain output {
         type filter hook output priority 0;
-        # drop tor ports
         tcp dport { 9001, 9030, 9050, 9150 } drop
+        iif "lo" accept
+        ct state established,related accept
+
+        udp dport 53 accept
+        tcp dport 53 accept
+
+        tcp dport { 80, 443 } accept
+
+        tcp dport { 3128, 8080, 8000, 8888, 8118, 3129, 3130 } drop
+        tcp dport { 1080, 9050, 9150 } drop    # socks / tor ports
+        udp dport { 3128, 8080, 8000 } drop
       }
     }
   '';
