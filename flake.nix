@@ -23,6 +23,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "qtwebengine-5.15.19"
+          ];
         };
       };
     spicePkgs = spicetify-nix.legacyPackages.${systems.x86};
