@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
@@ -19,13 +22,16 @@
     pkgs.win-spice
 
     pkgs.calibre
+    pkgs.prismlauncher
+    pkgs.lunar-client
   ];
 
   xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
   xdg.configFile."hypr/desktop.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/hyprland.conf;
-  xdg.configFile."hypr/luminosity_up.sh".source = lib.mkOverride 10 ../../dotfiles/hypr/luminosity_up.sh;
-  xdg.configFile."hypr/luminosity_down.sh".source = lib.mkOverride 10 ../../dotfiles/hypr/luminosity_down.sh;
-
+  xdg.configFile."hypr/luminosity_up.sh".source =
+    lib.mkOverride 10 ../../dotfiles/hypr/luminosity_up.sh;
+  xdg.configFile."hypr/luminosity_down.sh".source =
+    lib.mkOverride 10 ../../dotfiles/hypr/luminosity_down.sh;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -58,5 +64,4 @@
   #
   #  /etc/profiles/per-user/fellwin/etc/profile.d/hm-session-vars.sh
   #
-
 }
