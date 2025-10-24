@@ -36,6 +36,7 @@
     pkgs.nerd-fonts.jetbrains-mono
 
     # other packages:
+    pkgs.firefox
     pkgs.fzf
     pkgs.feh
     pkgs.vim

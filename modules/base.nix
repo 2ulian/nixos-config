@@ -12,6 +12,7 @@
     ./nixld.nix
     ./emacs.nix
     ./git.nix
+    ./stremio.nix
     #./virtualization.nix
     #./mullvad.nix
   ];
