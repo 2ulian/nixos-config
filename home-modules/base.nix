@@ -78,6 +78,8 @@
 
     # Python
     #pkgs.python313
+
+    pkgs.prismlauncher
   ];
 
   programs.zoxide = {
