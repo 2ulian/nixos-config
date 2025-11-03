@@ -13,6 +13,7 @@
     ./emacs.nix
     ./git.nix
     ./stremio.nix
+    ./bluetooth.nix
     #./virtualization.nix
     #./mullvad.nix
   ];
