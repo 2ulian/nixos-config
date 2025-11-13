@@ -2,7 +2,7 @@
   #nix-ld with some libraries
   programs.nix-ld = {
     enable = true;
-    package = pkgs.nix-ld-rs;
+    package = pkgs.nix-ld;
     libraries = with pkgs; [
       glib
       zlib
