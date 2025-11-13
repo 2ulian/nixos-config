@@ -19,12 +19,12 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
   imports = [
-    #./librewolf.nix
+    ./librewolf.nix
     ./vscode/codium.nix
     ./git.nix
     #./obs.nix
     ./zsh.nix
-    #./eclipse.nix
+    ./eclipse.nix
     #./opsec.nix
     #./fish.nix
     ./neovim.nix
