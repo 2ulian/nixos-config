@@ -45,6 +45,7 @@
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
+    pkgs.code-cursor-fhs
     pkgs.qbittorrent-enhanced
     pkgs.ttyper
     # tmux
