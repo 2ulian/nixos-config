@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  hyprland,
   lib,
   ...
 }: {

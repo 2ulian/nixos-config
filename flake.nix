@@ -6,17 +6,23 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     spicetify-nix,
+    nix-darwin,
+    nix-homebrew,
     ...
   }: let
     systems = {
       x86 = "x86_64-linux";
       arm = "aarch64-linux";
+      darwin = "aarch64-darwin";
     };
     mkPkgs = system:
       import nixpkgs {
@@ -78,6 +84,45 @@
             home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
             home-manager.extraSpecialArgs = {inherit spicePkgs;};
             home-manager.users.fellwin = import ./profiles/macbook/home.nix;
+          }
+        ];
+      };
+    };
+darwinConfigurations = {
+      mac = nix-darwin.lib.darwinSystem {
+        pkgs = mkPkgs systems.darwin;
+        system = systems.darwin;
+        modules = [
+          ./profiles/macos/configuration.nix
+          nix-homebrew.darwinModules.nix-homebrew{
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "fellwin";
+            };
+          }
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
+            home-manager.extraSpecialArgs = {spicePkgs = spicetify-nix.legacyPackages.${systems.darwin};};
+            home-manager.users.fellwin = import ./profiles/macos/home.nix;
+          }
+        ];
+      };
+
+};
+homeConfigurations = {
+     mac = home-manager.lib.homeManagerConfiguration {
+
+        pkgs = mkPkgs systems.darwin;
+  modules = [
+          {
+            imports = [
+              ./profiles/macos/home.nix
+              spicetify-nix.homeManagerModules.default
+            ];
           }
         ];
       };

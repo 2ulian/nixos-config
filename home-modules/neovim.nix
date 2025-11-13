@@ -5,11 +5,11 @@
 }:
 {
   imports = [
-    ./uniliste.nix
+    #./uniliste.nix
   ];
   home.packages = with pkgs; [
     # neovim dependencies
-    wl-clipboard
+    #wl-clipboard
     ripgrep
     gcc
     nodejs
@@ -22,6 +22,7 @@
     #nix
     nixd # lsp
     nixfmt
+    alejandra
     #java
     jdt-language-server # lsp
     sonarlint-ls

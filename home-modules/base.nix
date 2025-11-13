@@ -1,13 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fellwin";
-  home.homeDirectory = "/home/fellwin";
+  home.homeDirectory = lib.mkDefault "/home/fellwin";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -18,12 +19,12 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
   imports = [
-    ./librewolf.nix
+    #./librewolf.nix
     ./vscode/codium.nix
     ./git.nix
     #./obs.nix
     ./zsh.nix
-    ./eclipse.nix
+    #./eclipse.nix
     #./opsec.nix
     #./fish.nix
     ./neovim.nix
@@ -36,37 +37,29 @@
     pkgs.nerd-fonts.jetbrains-mono
 
     # other packages:
-    pkgs.firefox
     pkgs.fzf
     pkgs.feh
     pkgs.vim
     pkgs.fastfetch
-    pkgs.vlc
     pkgs.btop
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
-    #pkgs.stremio #depend on qtwebengine which is not updated
-    pkgs.nemo-with-extensions
-    pkgs.file-roller
-    pkgs.nemo-fileroller
-    pkgs.parsec-bin
     pkgs.qbittorrent-enhanced
-    pkgs.libreoffice-qt6
-    pkgs.pwvucontrol
     pkgs.ttyper
     # tmux
     pkgs.tmux
     pkgs.ncdu
-    # to avoid neovim glitching with tmux
-    #pkgs.ncurses
+
+    #pkgs.libreoffice-qt6
+    #pkgs.nemo-with-extensions
+    #pkgs.pwvucontrol
+    #pkgs.file-roller
+    #pkgs.nemo-fileroller
 
     pkgs.tree
 
-    #pkgs.lutris # not compatible with arch64
     pkgs.ncspot
-    pkgs.anki
-    pkgs.gimp
     pkgs.openfortivpn
 
     # Compressor/Extraction utilities
@@ -79,7 +72,7 @@
     # Python
     #pkgs.python313
 
-    pkgs.prismlauncher
+    #pkgs.prismlauncher
   ];
 
   programs.zoxide = {
@@ -126,23 +119,6 @@
   #
   #  /etc/profiles/per-user/fellwin/etc/profile.d/hm-session-vars.sh
   #
-
-  # GTK Theming
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Flat-Remix-GTK-Blue-Darkest";
-      package = pkgs.flat-remix-gtk;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
-
-  home.sessionVariables = {
-    EDITOR = "vim";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
