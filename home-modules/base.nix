@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fellwin";
@@ -52,11 +51,11 @@
     pkgs.tmux
     pkgs.ncdu
 
-    #pkgs.libreoffice-qt6
-    #pkgs.nemo-with-extensions
-    #pkgs.pwvucontrol
-    #pkgs.file-roller
-    #pkgs.nemo-fileroller
+    pkgs.libreoffice-qt6
+    pkgs.nemo-with-extensions
+    pkgs.pwvucontrol
+    pkgs.file-roller
+    pkgs.nemo-fileroller
 
     pkgs.tree
 
@@ -81,7 +80,7 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
-    options = [ "--cmd cd" ];
+    options = ["--cmd cd"];
   };
 
   services.syncthing.enable = true;
@@ -90,6 +89,19 @@
   home.sessionPath = [
     "$HOME/.config/emacs/bin/"
   ];
+
+  # GTK Theming
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Flat-Remix-GTK-Blue-Darkest";
+      package = pkgs.flat-remix-gtk;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
