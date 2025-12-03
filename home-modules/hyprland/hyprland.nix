@@ -21,6 +21,8 @@
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
     pkgs.kitty
+    pkgs.terminus_font
+    pkgs.rofi-unwrapped
 
     #required for wallpapers:
     pkgs.mpvpaper

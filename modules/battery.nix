@@ -7,7 +7,7 @@
   services.udev.packages = [ pkgs.acpilight ];
 
   # NetworkManager powersave
-  networking.networkmanager.wifi.powersave = true;
+  # networking.networkmanager.wifi.powersave = true;
 
 
   services.auto-cpufreq.enable = true;

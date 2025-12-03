@@ -25,7 +25,7 @@
     alejandra
     #java
     jdt-language-server # lsp
-    sonarlint-ls
+    # sonarlint-ls 
     # lldb # to get lldb-dap
     #vuejs
     vue-language-server

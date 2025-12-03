@@ -16,17 +16,18 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.11"; # Please read the comment before changing.
+  home.stateVersion = "26.05"; # Please read the comment before changing.
   imports = [
     ./librewolf.nix
     ./vscode/codium.nix
     ./git.nix
-    #./obs.nix
     ./zsh.nix
     ./eclipse.nix
+    ./neovim.nix
+
+    #./obs.nix
     #./opsec.nix
     #./fish.nix
-    ./neovim.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
@@ -45,6 +46,7 @@
     pkgs.obsidian
     pkgs.vesktop
     pkgs.code-cursor-fhs
+    pkgs.antigravity-fhs
     pkgs.qbittorrent-enhanced
     pkgs.ttyper
     # tmux
