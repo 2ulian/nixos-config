@@ -88,13 +88,14 @@
         ];
       };
     };
-darwinConfigurations = {
+    darwinConfigurations = {
       mac = nix-darwin.lib.darwinSystem {
         pkgs = mkPkgs systems.darwin;
         system = systems.darwin;
         modules = [
           ./profiles/macos/configuration.nix
-          nix-homebrew.darwinModules.nix-homebrew{
+          nix-homebrew.darwinModules.nix-homebrew
+          {
             nix-homebrew = {
               enable = true;
               enableRosetta = true;
@@ -111,13 +112,11 @@ darwinConfigurations = {
           }
         ];
       };
-
-};
-homeConfigurations = {
-     mac = home-manager.lib.homeManagerConfiguration {
-
+    };
+    homeConfigurations = {
+      mac = home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs systems.darwin;
-  modules = [
+        modules = [
           {
             imports = [
               ./profiles/macos/home.nix

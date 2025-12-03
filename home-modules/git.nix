@@ -1,15 +1,19 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = [
     pkgs.lazygit
   ];
 
   programs.git = {
     enable = true;
-    userName = "Julian";
-    userEmail = "rayconstantyjulian@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "rayconstantyjulian@gmail.com";
+        name = "Julian";
+      };
       init.defaultBranch = "main";
     };
   };
