@@ -7,6 +7,7 @@
   imports = [
     ../../modules/base.nix
     ../../modules/battery.nix
+    ../../modules/dwm.nix
     #./apple-silicon-support
     ./hardware-configuration.nix
     <apple-silicon-support/apple-silicon-support>
@@ -29,9 +30,9 @@
   hardware.graphics.enable = true;
 
   # Get the fullscreen
-  boot.kernelParams = [
-    "apple_dcp.show_notch=1"
-  ];
+  # boot.kernelParams = [
+  #   "apple_dcp.show_notch=1"
+  # ];
 
   services.auto-cpufreq.enable = lib.mkForce false;
 
