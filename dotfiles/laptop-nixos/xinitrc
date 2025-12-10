@@ -15,6 +15,8 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
   eval "$(dbus-launch --sh-syntax)"
 fi
 
+xrdb -merge ~/.Xresources
+
 gnome-keyring-daemon
 # pass secret service to save github passwords and xdotool to update the color of the bar
 ( sleep 0.5 && xdotool key Super+F5 ) &
