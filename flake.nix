@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -13,6 +15,8 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-stable,
+    nixpkgs-old,
     home-manager,
     spicetify-nix,
     nix-darwin,
@@ -29,9 +33,20 @@
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "qtwebengine-5.15.19"
-          ];
+        };
+      };
+    mkPkgs-stable = system:
+      import nixpkgs-stable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+    mkPkgs-old = system:
+      import nixpkgs-old {
+        inherit system;
+        config = {
+          allowUnfree = true;
         };
       };
     spicePkgs = spicetify-nix.legacyPackages.${systems.x86};
@@ -81,9 +96,11 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
-            home-manager.extraSpecialArgs = {inherit spicePkgs;};
             home-manager.users.fellwin = import ./profiles/macbook/home.nix;
+            home-manager.extraSpecialArgs = {
+              stablePkgs = mkPkgs-stable systems.arm;
+              oldPkgs = mkPkgs-old systems.arm;
+            };
           }
         ];
       };
