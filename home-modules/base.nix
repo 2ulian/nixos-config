@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  stablePkgs,
+  oldPkgs,
   lib,
   ...
 }: {
@@ -45,11 +47,11 @@
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
-    pkgs.code-cursor-fhs
-    pkgs.antigravity-fhs
+    #pkgs.antigravity-fhs
     pkgs.qbittorrent-enhanced
     pkgs.ttyper
     # tmux
+    pkgs.ryubing
     pkgs.tmux
     pkgs.ncdu
 
@@ -75,6 +77,10 @@
     #pkgs.python313
 
     #pkgs.prismlauncher
+
+    stablePkgs.code-cursor-fhs
+
+    oldPkgs.stremio
   ];
 
   programs.zoxide = {

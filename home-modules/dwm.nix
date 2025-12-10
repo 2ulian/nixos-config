@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = [
     #system
     pkgs.redshift
@@ -12,7 +14,7 @@
 
     #wallpaper
     pkgs.rofi
-    pkgs.xwinwrap
+    #pkgs.xwinwrap
     pkgs.mpv
     pkgs.xdotool
     pkgs.pywal
@@ -24,15 +26,21 @@
     # overrided st
     (pkgs.st.overrideAttrs (old: {
       src = ../dotfiles/laptop-nixos/suckless/st-flexipatch;
-      buildInputs = old.buildInputs or [] ++ [
-        pkgs.imlib2
-      ];
+      buildInputs =
+        old.buildInputs or []
+        ++ [
+          pkgs.imlib2
+        ];
     }))
 
     # overrided slstatus
-    (pkgs.slstatus.overrideAttrs {
-      src = ../dotfiles/laptop-nixos/suckless/slstatus;
-    })
+    (pkgs.slstatus.overrideAttrs (old: {
+      postPatch =
+        (old.postPatch or "")
+        + ''
+          cp ${../dotfiles/laptop-nixos/suckless/slstatus/config.h} config.h
+        '';
+    }))
 
     # overrided slock
     (pkgs.slock.overrideAttrs {
@@ -56,12 +64,11 @@
     fi
   '';
 
-
   # dconf
   dconf = {
     settings = {
       "org/cinnamon/desktop/applications/terminal" = {
-        exec = "st";
+        # exec = "st";
         # exec-arg = ""; # argument
       };
     };
