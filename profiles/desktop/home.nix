@@ -27,6 +27,7 @@
     pkgs.lutris
     pkgs.python313Packages.openai-whisper
     pkgs.upscayl
+    pkgs.davinci-resolve
   ];
 
   xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
