@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
@@ -27,6 +26,7 @@
     pkgs.lunar-client
     pkgs.lutris
     pkgs.python313Packages.openai-whisper
+    pkgs.upscayl
   ];
 
   xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
