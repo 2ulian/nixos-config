@@ -65,6 +65,10 @@
             home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
             home-manager.extraSpecialArgs = {inherit spicePkgs;};
             home-manager.users.fellwin = import ./profiles/laptop-nixos/home.nix;
+            home-manager.extraSpecialArgs = {
+              stablePkgs = mkPkgs-stable systems.arm;
+              oldPkgs = mkPkgs-old systems.arm;
+            };
           }
         ];
       };
@@ -82,6 +86,10 @@
             home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
             home-manager.extraSpecialArgs = {inherit spicePkgs;};
             home-manager.users.fellwin = import ./profiles/desktop/home.nix;
+            home-manager.extraSpecialArgs = {
+              stablePkgs = mkPkgs-stable systems.arm;
+              oldPkgs = mkPkgs-old systems.arm;
+            };
           }
         ];
       };
