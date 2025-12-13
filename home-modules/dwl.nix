@@ -44,8 +44,8 @@
           --replace "wlroots-0.19" "${wlrootsPc}" \
           --replace "wlroots-0.18" "${wlrootsPc}"
 
-        # cp ${../dotfiles/config.def.h} config.def.h
       '';
+        # cp ${../dotfiles/config.def.h} config.def.h
   });
 in {
   home.packages = [
