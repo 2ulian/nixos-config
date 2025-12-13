@@ -23,7 +23,7 @@
       owner = "2ulian";
       repo = "dwl";
       rev = "main";
-      hash = "sha256-zFxkDFAPbfmxCXm1CZ0cGDOkhQM7c1NeBFagfRuXoO4=";
+      hash = "sha256-VTg3y1asq8Qn2ewvuxKtKYCzzihKVPAT7CUO2OafJUA=";
     };
 
     # s’assure que wlroots est bien dans l'env de build
@@ -43,6 +43,8 @@
         substituteInPlace Makefile \
           --replace "wlroots-0.19" "${wlrootsPc}" \
           --replace "wlroots-0.18" "${wlrootsPc}"
+
+        # cp ${../dotfiles/config.def.h} config.def.h
       '';
   });
 in {
@@ -52,18 +54,15 @@ in {
     pkgs.hyprshot
     pkgs.hyprlock
     pkgs.hyprshade
-    pkgs.hypridle
-    pkgs.hyprsunset
     pkgs.hyprpicker
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
-    pkgs.kitty
+    pkgs.foot
     pkgs.rofi-unwrapped
 
     #required for wallpapers:
     pkgs.mpvpaper
     pkgs.imagemagick
-    pkgs.waypaper
     pkgs.swww
     pkgs.pywal
     pkgs.pywalfox-native
@@ -76,6 +75,8 @@ in {
     pkgs.brightnessctl
     pkgs.terminus_font
     pkgs.tofi
+    pkgs.wmenu
+    pkgs.wtype
 
     # overrided slstatus
     (pkgs.slstatus.overrideAttrs (old: {
@@ -87,22 +88,20 @@ in {
     }))
   ];
 
-  #kitty configuration
-  xdg.configFile.kitty.source = ../dotfiles/kitty;
+  #foot configuration
+  xdg.configFile.foot.source = ../dotfiles/foot;
+
+  # pywal configuration
+  xdg.configFile."wal/hooks".source = ../dotfiles/wal/hooks;
+  xdg.configFile."wal/templates".source = ../dotfiles/wal/templates;
 
   dconf = {
     settings = {
       "org/cinnamon/desktop/applications/terminal" = {
-        exec = "kitty";
+        exec = "foot";
         # exec-arg = ""; # argument
       };
     };
-  };
-
-  # Enable qt for icon compability and PATH issue
-  qt = {
-    enable = true;
-    platformTheme.name = "kde";
   };
 
   # GTK Theming
@@ -117,12 +116,12 @@ in {
     QT_QPA_PLATFORM = "wayland";
   };
 
-  # .zprofile for hyprland autologin
+  # .zprofile for dwl autologin
   # home.file.".zprofile".text = ''
   #   # only launch hyprland if there is no other services
   #   if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && [ "''${XDG_VTNR:-0}" -eq 1 ] && [ -z "$TMUX" ]
   #   then
-  #     exec Hyprland
+  #     exec dwl
   #   fi
   # '';
 }
