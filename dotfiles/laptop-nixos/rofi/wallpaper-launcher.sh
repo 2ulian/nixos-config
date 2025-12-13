@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #  ██╗    ██╗ █████╗ ██╗     ██╗     ██████╗  █████╗ ██████╗ ███████╗██████╗
 #  ██║    ██║██╔══██╗██║     ██║     ██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
 #  ██║ █╗ ██║███████║██║     ██║     ██████╔╝███████║██████╔╝█████╗  ██████╔╝
@@ -20,7 +20,7 @@
 
 
 # Set some variables
-wall_dir="${HOME}/Pictures/walls"
+wall_dir="${HOME}/walls"
 cacheDir="${HOME}/.cache/jp${theme}"
 rofi_command="rofi -x11 -dmenu -theme ${HOME}/.config/rofi/wallSelect.rasi -theme-str ${rofi_override}"
 rofi_command2="rofi -x11 -dmenu -theme ${HOME}/.config/rofi/wallSelect2.rasi -theme-str ${rofi_override}"

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ ! -d "$HOME/.config/tofi" ] ; then
+    mkdir -p "$HOME/.config/tofi"
+fi
+
+if [ -f "$HOME/.cache/wal/config.tofi" ]; then
+    cp "$HOME/.cache/wal/config.tofi" "$HOME/.config/tofi/config"
+    echo "Configuration tofi mise à jour avec les couleurs pywal"
+fi
+
+
+
+
+
+
+
+
+

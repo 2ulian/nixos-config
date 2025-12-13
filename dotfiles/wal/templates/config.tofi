@@ -1,0 +1,56 @@
+anchor = center
+margin-top = 0
+margin-bottom = 0
+margin-left = 0
+margin-right = 0
+
+font = terminus
+font-size = 10
+hint-font = false
+
+text-color = {foreground.strip}
+placeholder-color = {color8.strip}
+
+background-color = {background.strip}dd
+
+input-background = {color8.strip}dd
+input-color = {foreground.strip}
+
+prompt-background = 00000000
+prompt-color = {foreground.strip}
+
+default-result-background = 00000000
+alternate-result-background = 00000000
+selection-background = {color1.strip}dd
+selection-color = {color15.strip}
+
+width = 20%
+height = 30%
+corner-radius = 0
+outline-width = 0
+border-width = 0
+
+padding-top = 12
+padding-bottom = 12
+padding-left = 12
+padding-right = 12
+
+num-results = 20
+result-spacing = 5
+
+history = true
+require-match = true
+ascii-input = true
+late-keyboard-init = true
+hide-cursor = false
+text-cursor = true
+text-cursor-style = bar
+
+
+
+
+
+
+
+
+

@@ -64,14 +64,16 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ wifi_essid, "[wifi: %s", "wlp3s0"},
-	{ wifi_perc, " %s%%] ", "wlp3s0"},
-	{ cpu_perc, "[cpu: %s%%] ", NULL},
-	{ run_command, "[vol: %s%%] ", "sh -c 'wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2 | cut -d '.' -f 2'"},
-	{ battery_state, "[BAT0: %s", "BAT0"},
-	{ battery_perc, "%s%%] ", "BAT0"},
-	{ battery_state, "[BAT1: %s", "BAT1"},
-	{ battery_perc, "%s%%] ", "BAT1"},
-	{ datetime, "[%s]",           "%F %T" },
+    /* function format          argument */
+    {wifi_essid, "[wifi: %s", "wlan0"},
+    {wifi_perc, " %s%%] ", "wlan0"},
+    {cpu_perc, "[cpu: %s%%] ", NULL},
+    {ram_perc, "[ram: %s%%] ", NULL},
+    {run_command, "[vol: %s%%] ",
+     "sh -c \"/run/current-system/sw/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int(\\$2 * 100)}'\""},
+    {battery_state, "[BAT0: %s", "macsmc-battery"},
+    {battery_perc, "%s%%] ", "macsmc-battery"},
+    //{battery_state, "[BAT1: %s", "BAT1"},
+    //{battery_perc, "%s%%] ", "BAT1"},
+    {datetime, "[%s]", "%F %T"},
 };
