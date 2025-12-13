@@ -11,7 +11,6 @@
     # required packages for hyprland:
     pkgs.brillo
     pkgs.waybar
-    pkgs.brightnessctl
     pkgs.hyprshot
     pkgs.hyprlock
     pkgs.hyprshade
