@@ -52,6 +52,11 @@
       #bindkey '^[OA' history-substring-search-up
       #bindkey '^[[B' history-substring-search-down
       #bindkey '^[OB' history-substring-search-down
+
+      # Set terminal title to current directory
+      precmd() {
+        print -Pn "\e]0;%n@%m:%~\a"
+      }
     '';
 
     shellAliases = {
