@@ -80,7 +80,7 @@
 
     stablePkgs.code-cursor-fhs
 
-    oldPkgs.stremio
+    # oldPkgs.stremio
   ];
 
   programs.zoxide = {
