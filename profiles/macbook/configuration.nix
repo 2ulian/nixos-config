@@ -7,7 +7,7 @@
   imports = [
     ../../modules/base.nix
     ../../modules/battery.nix
-    ../../modules/dwm.nix
+    #../../modules/dwm.nix
     #./apple-silicon-support
     ./hardware-configuration.nix
     <apple-silicon-support/apple-silicon-support>
