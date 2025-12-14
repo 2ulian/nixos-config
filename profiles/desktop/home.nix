@@ -7,8 +7,7 @@
   imports = [
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
-    ../../home-modules/hyprland/hyprland.nix
-    ../../home-modules/hyprland/illogical-impulse.nix
+    ../../home-modules/dwl.nix
   ];
 
   home.packages = [
@@ -22,16 +21,15 @@
     pkgs.win-spice
 
     pkgs.calibre
-    pkgs.prismlauncher
-    pkgs.lunar-client
     pkgs.lutris
     pkgs.python313Packages.openai-whisper
     pkgs.upscayl
     pkgs.davinci-resolve
+    pkgs.stremio
   ];
 
-  xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
-  xdg.configFile."hypr/desktop.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/hyprland.conf;
+  #xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
+  #xdg.configFile."hypr/desktop.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/hyprland.conf;
   xdg.configFile."hypr/luminosity_up.sh".source =
     lib.mkOverride 10 ../../dotfiles/hypr/luminosity_up.sh;
   xdg.configFile."hypr/luminosity_down.sh".source =
