@@ -23,7 +23,7 @@
       owner = "2ulian";
       repo = "dwl";
       rev = "main";
-      hash = "sha256-gQ3cbxAJn8f9xFlRg1jAdnsfgrJJQQ4nDqgq5AqGZO8=";
+      hash = "sha256-StmO1zA53ussHG6G+gmhmgR920D5aQZU0nupXXMmLK4=";
     };
 
     # s’assure que wlroots est bien dans l'env de build
