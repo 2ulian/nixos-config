@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  oldPkgs,
   ...
 }: {
   imports = [
@@ -25,7 +26,7 @@
     pkgs.python313Packages.openai-whisper
     pkgs.upscayl
     pkgs.davinci-resolve
-    pkgs.stremio
+    oldPkgs.stremio
   ];
 
   #xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
