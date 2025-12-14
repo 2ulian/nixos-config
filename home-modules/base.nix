@@ -26,8 +26,8 @@
     ./zsh.nix
     ./eclipse.nix
     ./neovim.nix
+    ./obs.nix
 
-    #./obs.nix
     #./opsec.nix
     #./fish.nix
   ];
