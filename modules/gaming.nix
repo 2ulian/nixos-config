@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.steam = {
     enable = true;
     extraCompatPackages = [
@@ -8,5 +11,9 @@
   };
 
   programs.gamemode.enable = true;
-  programs.steam.gamescopeSession.enable = true;
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 }
