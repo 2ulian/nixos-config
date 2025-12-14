@@ -35,11 +35,4 @@
   # ];
 
   services.auto-cpufreq.enable = lib.mkForce false;
-
-  # Emulate x86 apps on arm
-  boot.kernel.sysctl = {"vm.max_map_count" = 262144;};
-  nix.settings.extra-platforms = ["x86_64-linux"];
-  nix.settings.trusted-users = ["fellwin"];
-  boot.binfmt.emulatedSystems = ["x86_64-linux"];
-  security.unprivilegedUsernsClone = true;
 }
