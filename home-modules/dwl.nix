@@ -23,7 +23,7 @@
       owner = "2ulian";
       repo = "dwl";
       rev = "main";
-      hash = "sha256-RjW8robzWugHsSEKr7Jt+/KIEvjK0QkEBQrE8umKqZM=";
+      hash = "sha256-gQ3cbxAJn8f9xFlRg1jAdnsfgrJJQQ4nDqgq5AqGZO8=";
     };
 
     # s’assure que wlroots est bien dans l'env de build
@@ -45,7 +45,7 @@
           --replace "wlroots-0.18" "${wlrootsPc}"
 
       '';
-        # cp ${../dotfiles/config.def.h} config.def.h
+    # cp ${../dotfiles/config.def.h} config.def.h
   });
 in {
   home.packages = [
