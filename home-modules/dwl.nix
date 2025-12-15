@@ -58,7 +58,6 @@ in {
     pkgs.hyprpolkitagent
     pkgs.apple-cursor
     pkgs.foot
-    pkgs.rofi-unwrapped
 
     pkgs.xdg-desktop-portal
     pkgs.xdg-desktop-portal-wlr
