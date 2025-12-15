@@ -88,6 +88,14 @@ in {
           cp ${../dotfiles/laptop-nixos/suckless/slstatus/config.h} config.h
         '';
     }))
+
+    # custom start script
+    (pkgs.writeShellScriptBin
+      "startw"
+      ''
+        set -euo pipefail
+        exec dbus-run-session -- sh -c 'slstatus -s | dwl -s ./nixos-config/dotfiles/start.sh'
+      '')
   ];
 
   #foot configuration
