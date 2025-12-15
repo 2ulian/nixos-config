@@ -75,16 +75,21 @@ static const Layout layouts[] = {
 /* NOTE: ALWAYS add a fallback rule, even if you are completely sure it won't be
  * used */
 static const MonitorRule monrules[] = {
-    /* name       mfact nmaster scale layout       rotate/reflect              x  y  resx resy rate mode adaptive*/
+    /* name       mfact nmaster scale layout       rotate/reflect              x
+       y  resx resy rate mode adaptive*/
     /* example of a HiDPI laptop monitor at 120Hz:
-    { "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 0, 0, 120.000f, 1, 1},
+    { "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,
+    0, 0, 0, 0, 120.000f, 1, 1},
     * mode let's the user decide on how dwl should implement the modes:
     * -1 Sets a custom mode following the users choice
-    * All other number's set the mode at the index n, 0 is the standard mode; see wlr-randr
+    * All other number's set the mode at the index n, 0 is the standard mode;
+    see wlr-randr
     */
     /* defaults */
-    //{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0, 0.0f, 0 ,1},
-    { NULL,       0.5f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0, 144.001007f, 1, 0},
+    //{ NULL,       0.55f, 1,      1,    &layouts[0],
+    // WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0, 0.0f, 0 ,1},
+    {NULL, 0.5f, 1, 1, &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0,
+     144.001007f, 1, 0},
 };
 
 /* keyboard */
@@ -104,10 +109,12 @@ static const int repeat_delay = 600;
 static const int tap_to_click = 1;
 static const int tap_and_drag = 1;
 static const int drag_lock = 1;
-static const int natural_scrolling = 1;
 static const int disable_while_typing = 1;
 static const int left_handed = 0;
 static const int middle_button_emulation = 0;
+/* Natural scrolling */
+static const int trackpad_natural_scrolling = 1;
+static const int mouse_natural_scrolling = 0;
 /* You can choose between:
 LIBINPUT_CONFIG_SCROLL_NO_SCROLL
 LIBINPUT_CONFIG_SCROLL_2FG
@@ -136,9 +143,12 @@ static const uint32_t send_events_mode = LIBINPUT_CONFIG_SEND_EVENTS_ENABLED;
 LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT
 LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE
 */
-static const enum libinput_config_accel_profile accel_profile =
+static const enum libinput_config_accel_profile trackpad_accel_profile =
     LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE;
-static const double accel_speed = 0.0;
+static const double trackpad_accel_speed = 0.0;
+static const enum libinput_config_accel_profile mouse_accel_profile =
+    LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT;
+static const double mouse_accel_speed = 0.0;
 
 /* You can choose between:
 LIBINPUT_CONFIG_TAP_MAP_LRM -- 1/2/3 finger tap maps to left/right/middle
