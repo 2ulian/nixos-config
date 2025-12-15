@@ -60,6 +60,9 @@ in {
     pkgs.foot
     pkgs.rofi-unwrapped
 
+    pkgs.xdg-desktop-portal
+    pkgs.xdg-desktop-portal-wlr
+
     #required for wallpapers:
     pkgs.mpvpaper
     pkgs.imagemagick
@@ -114,6 +117,9 @@ in {
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
+    XDG_CURRENT_DESKTOP = "dwl";
+    XDG_SESSION_TYPE = "wayland";
+    SDL_VIDEODRIVER = "wayland";
   };
 
   # .zprofile for dwl autologin

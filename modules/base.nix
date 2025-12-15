@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   programs.hyprland.enable = true;
 
   imports = [
@@ -70,6 +69,22 @@
   programs.dconf.enable = true;
   # Enable automatic login for the user.
   services.getty.autologinUser = "fellwin";
+
+  services.dbus.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+    ];
+  };
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
