@@ -21,6 +21,7 @@ in {
   home.packages = [
     stremio-xcb
     pkgs.kdePackages.kdenlive
+    pkgs.rpcs3
   ];
 
   xdg.desktopEntries.stremio = {
