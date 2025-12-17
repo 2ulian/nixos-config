@@ -35,4 +35,6 @@
   # ];
 
   services.auto-cpufreq.enable = lib.mkForce false;
+  boot.binfmt.emulatedSystems = ["x86_64-linux" "i686-linux"];
+  boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;
 }

@@ -75,6 +75,9 @@
 
     # Python
     #pkgs.python313
+    pkgs.pnpm
+    pkgs.vite
+    pkgs.qtcreator
 
     #pkgs.prismlauncher
 
