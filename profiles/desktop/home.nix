@@ -23,6 +23,7 @@
 
     pkgs.calibre
     pkgs.lutris
+    pkgs.heroic-unwrapped
     pkgs.python313Packages.openai-whisper
     pkgs.upscayl
     pkgs.davinci-resolve
