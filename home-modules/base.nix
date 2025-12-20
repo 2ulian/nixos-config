@@ -78,6 +78,8 @@
     pkgs.pnpm
     pkgs.vite
     pkgs.qtcreator
+    pkgs.kdePackages.qtbase
+    pkgs.kdePackages.qtdeclarative
 
     #pkgs.prismlauncher
 
@@ -85,6 +87,10 @@
 
     # oldPkgs.stremio
   ];
+
+  home.sessionVariables = {
+    CMAKE_PREFIX_PATH = "${pkgs.kdePackages.qtbase}:${pkgs.kdePackages.qtdeclarative}";
+  };
 
   programs.zoxide = {
     enable = true;
