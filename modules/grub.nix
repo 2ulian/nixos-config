@@ -1,5 +1,5 @@
 
-{ pkgs, ... }:
+{ pkgs, lib,... }:
 
 let
   minegrubThemeSrc = pkgs.fetchFromGitHub {
@@ -31,7 +31,7 @@ let
   };
 in
 {
-  boot.loader.systemd-boot.enable = false;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
