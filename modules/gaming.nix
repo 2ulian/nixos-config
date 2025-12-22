@@ -16,4 +16,8 @@
     enable = true;
     capSysNice = false;
   };
+
+  environment.systemPackages = with pkgs; [
+    mangohud
+  ];
 }
