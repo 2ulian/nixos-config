@@ -12,7 +12,7 @@
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
-    open = true;
+    open = false;
   };
 
   # Luminosity for external display:
