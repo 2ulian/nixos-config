@@ -11,6 +11,7 @@
     ];
 
   networking.hostName = "sirius"; # hostname
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   fileSystems."/home/fellwin/data" = {
     device = "/dev/disk/by-uuid/7691b034-9844-41b8-b76c-6d7927e98462";
