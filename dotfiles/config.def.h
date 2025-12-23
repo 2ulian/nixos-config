@@ -20,7 +20,7 @@ static const int refresh_colors =
     1; /* 1 means reloading colors when the session starts*/
 static const char *colors_file =
     "/home/fellwin/.cache/wal/dwl-colors"; /* change the username */
-static const char *fonts[] = {"terminus:bold:size=10"};
+static const char *fonts[] = {"terminus:size=10"};
 static const float rootcolor[] = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old
  * behavior */
