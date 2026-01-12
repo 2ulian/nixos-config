@@ -1,8 +1,11 @@
-{ config, oldPkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
-    package = oldPkgs.librewolf-bin; # Utiliser librewolf au lieu de firefox
+    package = pkgs.librewolf; # Utiliser librewolf au lieu de firefox
     policies = {
       # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.

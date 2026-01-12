@@ -30,7 +30,7 @@
     #vuejs
     vue-language-server
     #php
-    phpPackages.php-codesniffer
+    #phpPackages.php-codesniffer
     # prettier
     prettier
 

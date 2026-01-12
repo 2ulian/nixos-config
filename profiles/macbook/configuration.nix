@@ -17,7 +17,8 @@
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false; # Disable EFI variable modification
 
   # Force network manager to use iwd instead of wpa_supplicant
-  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd.enable = false;
+  networking.wireless.enable = lib.mkForce true;
 
   # Add firmware files:
   hardware.asahi = {
