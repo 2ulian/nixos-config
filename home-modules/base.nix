@@ -84,6 +84,7 @@
     #pkgs.prismlauncher
 
     stablePkgs.code-cursor-fhs
+    pkgs.claude-code
 
     # oldPkgs.stremio
   ];
