@@ -11,6 +11,8 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    microvm.url = "github:microvm-nix/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -21,6 +23,7 @@
     spicetify-nix,
     nix-darwin,
     nix-homebrew,
+    microvm,
     ...
   }: let
     systems = {
