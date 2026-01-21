@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.mullvad
-  ];
+  config,
+  pkgs,
+  ...
+}: {
   services.mullvad-vpn.enable = true;
 }
