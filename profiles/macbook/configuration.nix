@@ -36,6 +36,25 @@
   #   "apple_dcp.show_notch=1"
   # ];
 
+  # waydroid
+  virtualisation.waydroid.enable = true;
+  boot.kernelPatches = [
+    {
+      name = "waydroid-config";
+      patch = null;
+      extraConfig = ''
+        ANDROID_BINDER_IPC y
+        ANDROID_BINDERFS y
+        ANDROID_BINDER_DEVICES "binder,hwbinder,vndbinder"
+        PSI y
+      '';
+    }
+  ];
+  # boot.kernelModules = ["binder_linux"];
+  # boot.kernelParams = [
+  #   "binder.devices=binder,vndbinder,hwbinder"
+  # ];
+  #
   services.auto-cpufreq.enable = lib.mkForce false;
   boot.binfmt.emulatedSystems = ["x86_64-linux" "i686-linux"];
   boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;

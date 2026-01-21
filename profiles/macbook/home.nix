@@ -22,6 +22,7 @@ in {
     stremio-xcb
     pkgs.kdePackages.kdenlive
     pkgs.rpcs3
+    pkgs.azahar
   ];
 
   xdg.desktopEntries.stremio = {

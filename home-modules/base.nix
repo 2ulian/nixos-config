@@ -64,6 +64,8 @@
     pkgs.tree
 
     pkgs.ncspot
+
+    # vpniut
     pkgs.openfortivpn
 
     # Compressor/Extraction utilities
