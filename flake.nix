@@ -126,7 +126,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.fellwin = import ./profiles/server/home.nix;
+            home-manager.users.server = import ./profiles/server/home.nix;
             home-manager.extraSpecialArgs = {
               stablePkgs = mkPkgs-stable systems.x86;
               oldPkgs = mkPkgs-old systems.x86;
