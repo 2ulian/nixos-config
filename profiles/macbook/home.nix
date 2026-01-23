@@ -3,6 +3,7 @@
   pkgs,
   lib,
   oldPkgs,
+  stablePkgs,
   ...
 }: let
   stremio-xcb = oldPkgs.writeShellScriptBin "stremio" ''
@@ -22,7 +23,7 @@ in {
     stremio-xcb
     pkgs.kdePackages.kdenlive
     pkgs.rpcs3
-    pkgs.azahar
+    stablePkgs.azahar
   ];
 
   xdg.desktopEntries.stremio = {
