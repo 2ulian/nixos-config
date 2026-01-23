@@ -6,9 +6,41 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
   ];
-  home.username = "server";
-  home.homeDirectory = "/home/server";
-  home.stateVersion = "26.05"; # Please read the comment before changing.
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "fr_FR.UTF-8";
+    LC_IDENTIFICATION = "fr_FR.UTF-8";
+    LC_MEASUREMENT = "fr_FR.UTF-8";
+    LC_MONETARY = "fr_FR.UTF-8";
+    LC_NAME = "fr_FR.UTF-8";
+    LC_NUMERIC = "fr_FR.UTF-8";
+    LC_PAPER = "fr_FR.UTF-8";
+    LC_TELEPHONE = "fr_FR.UTF-8";
+    LC_TIME = "fr_FR.UTF-8";
+  };
+
+  # Configure console keymap
+  console.keyMap = "fr";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.server = {
+    isNormalUser = true;
+    description = "server";
+    extraGroups = [
+      "wheel"
+    ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+
+  time.timeZone = "Europe/Paris";
 
   networking.hostName = "server";
   boot.kernelPackages = pkgs.linuxPackages_hardened;
@@ -39,7 +71,10 @@
   #     "exec" # Allow execution of binaries and scripts (required for Steam)
   #   ];
   # };
+  system.stateVersion = "26.05"; # Did you read the comment?
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

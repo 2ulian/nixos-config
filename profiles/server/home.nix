@@ -9,6 +9,10 @@
     #../../home-modules/base.nix
   ];
 
+  home.username = "server";
+  home.homeDirectory = "/home/server";
+  home.stateVersion = "26.05"; # Please read the comment before changing.
+
   home.packages = [
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -42,4 +46,6 @@
   #
   #  /etc/profiles/per-user/fellwin/etc/profile.d/hm-session-vars.sh
   #
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }
