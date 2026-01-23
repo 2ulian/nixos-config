@@ -24,7 +24,7 @@
     ./vscode/codium.nix
     ./git.nix
     ./zsh.nix
-    ./eclipse.nix
+    #./eclipse.nix
     ./neovim.nix
     ./obs.nix
 
