@@ -8,6 +8,7 @@
     ../../home-modules/base.nix
     ../../home-modules/spicetify.nix
     ../../home-modules/dwl.nix
+    ../../home-modules/android.nix
   ];
 
   xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/laptop.conf;
