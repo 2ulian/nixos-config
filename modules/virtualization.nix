@@ -1,18 +1,25 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Manage the virtualization services
   virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
   };
+
+  boot.kernelParams = [
+    "intel_iommu=on" # or "amd_iommu=on"
+    "iommu.strict=1"
+  ];
+
   services.spice-vdagentd.enable = true;
 
-  users.users.fellwin.extraGroups = [ "libvirtd" ];
+  users.users.fellwin.extraGroups = ["libvirtd"];
 }
