@@ -1,7 +1,8 @@
-
-{ pkgs, lib,... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   minegrubThemeSrc = pkgs.fetchFromGitHub {
     owner = "Lxtharia";
     repo = "minegrub-theme";
@@ -29,8 +30,7 @@ let
       runHook postInstall
     '';
   };
-in
-{
+in {
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader = {
     efi = {
@@ -41,7 +41,21 @@ in
       enable = true;
       efiSupport = true;
       device = "nodev";
+      useOSProber = false;
       theme = "${minegrubTheme}/minegrub";
+      extraEntries = ''
+        menuentry "Qubes OS" {
+          insmod part_gpt
+          insmod fat
+          insmod chain
+          insmod efi_gop
+          search --file --set=root /EFI/qubes/grubx64.efi
+          chainloader /EFI/qubes/grubx64.efi
+        }
+        menuentry "Firmware Settings" {
+          fwsetup
+        }
+      '';
     };
   };
 }
