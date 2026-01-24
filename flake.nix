@@ -60,7 +60,7 @@
         system = systems.x86;
         modules = [
           ./profiles/laptop-nixos/configuration.nix
-          ./modules/filter.nix
+          ./temp/./modules/filter.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -81,7 +81,7 @@
         system = systems.x86;
         modules = [
           ./profiles/desktop/configuration.nix
-          ./modules/filter.nix
+          ./temp/./modules/filter.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -102,7 +102,7 @@
         system = systems.arm;
         modules = [
           ./profiles/macbook/configuration.nix
-          ./modules/filter.nix
+          ./temp/./modules/filter.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -121,7 +121,7 @@
         system = systems.x86;
         modules = [
           ./profiles/server/configuration.nix
-          ./.././modules/filter.nix
+          ./modules/filter.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
