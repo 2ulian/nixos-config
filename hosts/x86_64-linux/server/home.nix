@@ -6,38 +6,15 @@
   ...
 }: {
   imports = [
-    ../../home-modules/base.nix
-    ../../home-modules/spicetify.nix
-    ../../home-modules/dwl.nix
+    #../../../home-modules/base.nix
   ];
+
+  home.username = "server";
+  home.homeDirectory = "/home/server";
+  home.stateVersion = "26.05"; # Please read the comment before changing.
 
   home.packages = [
-    # required for qemu/kvm:
-    pkgs.virt-manager
-    pkgs.virt-viewer
-    pkgs.spice
-    pkgs.spice-gtk
-    pkgs.spice-protocol
-    pkgs.virtio-win
-    pkgs.win-spice
-
-    pkgs.calibre
-    pkgs.lutris
-    pkgs.rpcs3
-    pkgs.heroic-unwrapped
-    pkgs.python313Packages.openai-whisper
-    pkgs.upscayl
-    pkgs.davinci-resolve
-    oldPkgs.stremio
   ];
-
-  #xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/desktop.conf;
-  #xdg.configFile."hypr/desktop.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/hyprland.conf;
-  xdg.configFile."hypr/luminosity_up.sh".source =
-    lib.mkOverride 10 ../../dotfiles/hypr/luminosity_up.sh;
-  xdg.configFile."hypr/luminosity_down.sh".source =
-    lib.mkOverride 10 ../../dotfiles/hypr/luminosity_down.sh;
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -69,4 +46,6 @@
   #
   #  /etc/profiles/per-user/fellwin/etc/profile.d/hm-session-vars.sh
   #
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }

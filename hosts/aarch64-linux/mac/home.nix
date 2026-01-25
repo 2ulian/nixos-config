@@ -11,9 +11,9 @@
   '';
 in {
   imports = [
-    ../../home-modules/base.nix
+    ../../../home-modules/base.nix
     #../../home-modules/dwm.nix
-    ../../home-modules/dwl.nix
+    ../../../home-modules/dwl.nix
   ];
 
   #xdg.configFile."hypr/hyprland.conf".source = lib.mkOverride 10 ../../dotfiles/hypr/macbook.conf;

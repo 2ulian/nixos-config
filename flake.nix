@@ -1,177 +1,110 @@
 {
-  description = "Home Flake";
+  description = "Fully Dynamic Hybrid Flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-25.05";
+    chaotic.url = "github:chaotic-cx/nyx";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    microvm.url = "github:microvm-nix/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = {
+    self,
     nixpkgs,
-    nixpkgs-stable,
-    nixpkgs-old,
-    home-manager,
-    spicetify-nix,
     nix-darwin,
-    nix-homebrew,
-    microvm,
+    home-manager,
     ...
-  }: let
-    systems = {
-      x86 = "x86_64-linux";
-      arm = "aarch64-linux";
-      darwin = "aarch64-darwin";
-    };
-    mkPkgs = system:
-      import nixpkgs {
+  } @ inputs: let
+    lib = nixpkgs.lib;
+    darwinLib = nix-darwin.lib;
+
+    defaultUser = "fellwin";
+
+    mkPkgs = system: src:
+      import src {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config.allowUnfree = true;
       };
-    mkPkgs-stable = system:
-      import nixpkgs-stable {
+
+    #Builder NixOS
+    mkNixos = system: hostname:
+      lib.nixosSystem {
         inherit system;
-        config = {
-          allowUnfree = true;
+        pkgs = mkPkgs system inputs.nixpkgs;
+        specialArgs = {
+          inherit inputs;
+          stablePkgs = mkPkgs system inputs.nixpkgs-stable;
+          oldPkgs = mkPkgs system inputs.nixpkgs-old;
         };
-      };
-    mkPkgs-old = system:
-      import nixpkgs-old {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-    spicePkgs = spicetify-nix.legacyPackages.${systems.x86};
-  in {
-    nixosConfigurations = {
-      T480 = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs systems.x86;
-        system = systems.x86;
         modules = [
-          ./profiles/laptop-nixos/configuration.nix
-          ./temp/./modules/filter.nix
+          (./hosts + "/${system}/${hostname}/configuration.nix") # Import dynamique via le chemin
+          inputs.chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
-            home-manager.extraSpecialArgs = {inherit spicePkgs;};
-            home-manager.users.fellwin = import ./profiles/laptop-nixos/home.nix;
+            home-manager.users.${defaultUser} = import (./hosts + "/${system}/${hostname}/home.nix");
             home-manager.extraSpecialArgs = {
-              stablePkgs = mkPkgs-stable systems.x86;
-              oldPkgs = mkPkgs-old systems.x86;
+              inherit inputs;
+              spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
+              stablePkgs = mkPkgs system inputs.nixpkgs-stable;
+              oldPkgs = mkPkgs system inputs.nixpkgs-old;
             };
+            home-manager.sharedModules = [inputs.spicetify-nix.homeManagerModules.default];
           }
         ];
       };
 
-      sirius = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs systems.x86;
-        system = systems.x86;
+    #Builder Darwin
+    mkDarwin = system: hostname:
+      darwinLib.darwinSystem {
+        inherit system;
+        specialArgs = {inherit inputs;};
         modules = [
-          ./profiles/desktop/configuration.nix
-          ./temp/./modules/filter.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
-            home-manager.extraSpecialArgs = {inherit spicePkgs;};
-            home-manager.users.fellwin = import ./profiles/desktop/home.nix;
-            home-manager.extraSpecialArgs = {
-              stablePkgs = mkPkgs-stable systems.x86;
-              oldPkgs = mkPkgs-old systems.x86;
-            };
-          }
-        ];
-      };
-
-      mac = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs systems.arm;
-        system = systems.arm;
-        modules = [
-          ./profiles/macbook/configuration.nix
-          ./temp/./modules/filter.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.fellwin = import ./profiles/macbook/home.nix;
-            home-manager.extraSpecialArgs = {
-              stablePkgs = mkPkgs-stable systems.arm;
-              oldPkgs = mkPkgs-old systems.arm;
-            };
-          }
-        ];
-      };
-
-      server = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs systems.x86;
-        system = systems.x86;
-        modules = [
-          ./profiles/server/configuration.nix
-          ./modules/filter.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.server = import ./profiles/server/home.nix;
-            home-manager.extraSpecialArgs = {
-              stablePkgs = mkPkgs-stable systems.x86;
-              oldPkgs = mkPkgs-old systems.x86;
-            };
-          }
-        ];
-      };
-    };
-    darwinConfigurations = {
-      mac = nix-darwin.lib.darwinSystem {
-        pkgs = mkPkgs systems.darwin;
-        system = systems.darwin;
-        modules = [
-          ./profiles/macos/configuration.nix
-          nix-homebrew.darwinModules.nix-homebrew
+          (./hosts + "/${system}/${hostname}")
+          inputs.nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
               enable = true;
               enableRosetta = true;
-              user = "fellwin";
+              user = defaultUser;
             };
           }
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [spicetify-nix.homeManagerModules.default];
-            home-manager.extraSpecialArgs = {spicePkgs = spicetify-nix.legacyPackages.${systems.darwin};};
-            home-manager.users.fellwin = import ./profiles/macos/home.nix;
+            home-manager.users.${defaultUser} = import (./hosts + "/${system}/${hostname}/home.nix");
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
+            };
+            home-manager.sharedModules = [inputs.spicetify-nix.homeManagerModules.default];
           }
         ];
       };
-    };
-    homeConfigurations = {
-      mac = home-manager.lib.homeManagerConfiguration {
-        pkgs = mkPkgs systems.darwin;
-        modules = [
-          {
-            imports = [
-              ./profiles/macos/home.nix
-              spicetify-nix.homeManagerModules.default
-            ];
-          }
-        ];
-      };
-    };
+
+    scanHosts = path: builder: let
+      dir = builtins.readDir path;
+      validHosts = lib.filterAttrs (name: type: type == "directory") dir;
+    in
+      lib.mapAttrs (name: _: builder (baseNameOf path) name) validHosts;
+
+    pathX86Linux = ./hosts/x86_64-linux;
+    pathArmLinux = ./hosts/aarch64-linux;
+    pathArmDarwin = ./hosts/aarch64-darwin;
+  in {
+    nixosConfigurations =
+      (scanHosts pathX86Linux mkNixos)
+      // (scanHosts pathArmLinux mkNixos);
+
+    darwinConfigurations =
+      scanHosts pathArmDarwin mkDarwin;
   };
 }
