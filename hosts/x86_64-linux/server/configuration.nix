@@ -42,7 +42,6 @@
 
   time.timeZone = "Europe/Paris";
 
-  networking.hostName = "server";
   boot.kernelPackages = pkgs.linuxPackages_hardened;
 
   services.openssh.enable = true;
