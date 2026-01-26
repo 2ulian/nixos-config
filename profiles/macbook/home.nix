@@ -24,6 +24,10 @@ in {
     pkgs.kdePackages.kdenlive
     pkgs.rpcs3
     stablePkgs.azahar
+
+    # for fex
+    pkgs.fex
+    pkgs.squashfuse
   ];
 
   xdg.desktopEntries.stremio = {
