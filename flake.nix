@@ -30,6 +30,7 @@
       import src {
         inherit system;
         config.allowUnfree = true;
+        config.android_sdk.accept_license = true;
       };
 
     #Builder NixOS
@@ -45,6 +46,7 @@
         modules = [
           (./hosts + "/${system}/${hostname}/configuration.nix") # Import dynamique via le chemin
           inputs.chaotic.nixosModules.default
+          {networking.hostName = hostname;}
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

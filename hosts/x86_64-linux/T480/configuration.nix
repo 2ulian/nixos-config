@@ -9,10 +9,11 @@
     ../../../modules/battery.nix
     ../../../modules/gaming.nix
     ../../../modules/grub.nix
+    ../../../modules/android-studio.nix
     /etc/nixos/hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-hardened;
 
   # Battery optimisations
   services.thermald.enable = true;
