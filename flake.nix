@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-25.05";
-    chaotic.url = "github:chaotic-cx/nyx";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -45,7 +44,6 @@
         };
         modules = [
           (./hosts + "/${system}/${hostname}/configuration.nix") # Import dynamique via le chemin
-          inputs.chaotic.nixosModules.default
           {networking.hostName = hostname;}
           home-manager.nixosModules.home-manager
           {
