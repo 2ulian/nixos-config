@@ -9,7 +9,6 @@
     ../../../modules/battery.nix
     ../../../modules/gaming.nix
     ../../../modules/grub.nix
-    ../../../modules/android-studio.nix
     /etc/nixos/hardware-configuration.nix
   ];
 
