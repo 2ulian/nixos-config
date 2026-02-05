@@ -4,6 +4,7 @@
   lib,
   oldPkgs,
   stablePkgs,
+  x86_64Pkgs,
   ...
 }: let
   stremio-xcb = oldPkgs.writeShellScriptBin "stremio" ''
@@ -21,13 +22,11 @@ in {
 
   home.packages = [
     stremio-xcb
-    pkgs.kdePackages.kdenlive
     pkgs.rpcs3
     stablePkgs.azahar
+    x86_64Pkgs.spotify
 
-    # for fex
-    pkgs.fex
-    pkgs.squashfuse
+    pkgs.superTuxKart
   ];
 
   xdg.desktopEntries.stremio = {

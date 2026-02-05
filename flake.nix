@@ -55,6 +55,7 @@
               spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
               stablePkgs = mkPkgs system inputs.nixpkgs-stable;
               oldPkgs = mkPkgs system inputs.nixpkgs-old;
+              x86_64Pkgs = mkPkgs "x86_64-linux" inputs.nixpkgs;
             };
             home-manager.sharedModules = [inputs.spicetify-nix.homeManagerModules.default];
           }
