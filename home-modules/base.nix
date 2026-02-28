@@ -47,7 +47,12 @@
     pkgs.keepassxc
     pkgs.obsidian
     pkgs.vesktop
-    #pkgs.antigravity-fhs
+    pkgs.element-desktop
+    pkgs.rig
+    pkgs.wireguard-tools
+    pkgs.remmina
+    pkgs.wakeonlan
+    pkgs.tldr
     pkgs.qbittorrent-enhanced
     pkgs.ttyper
     # tmux
