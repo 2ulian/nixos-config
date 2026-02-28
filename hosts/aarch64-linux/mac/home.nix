@@ -23,8 +23,10 @@ in {
   home.packages = [
     stremio-xcb
     pkgs.rpcs3
+    pkgs.distrobox
+    pkgs.box64
+    pkgs.jetbrains.idea
     stablePkgs.azahar
-    x86_64Pkgs.spotify
 
     pkgs.superTuxKart
   ];
