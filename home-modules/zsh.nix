@@ -64,6 +64,7 @@
       ls = "lsd";
       ll = "lsd -l";
       update = "sudo nixos-rebuild switch --flake ~/nixos-config/ --impure";
+      search = "nix search nixpkgs";
       clean = "sudo nix-collect-garbage -d";
       dockerclean = "sudo docker system prune -a";
       journalclean = "sudo journalctl --vacuum-time=7d";
