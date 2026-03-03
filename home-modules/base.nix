@@ -88,12 +88,21 @@
     pkgs.kdePackages.qtbase
     pkgs.kdePackages.qtdeclarative
 
-    #pkgs.prismlauncher
-
     stablePkgs.code-cursor-fhs
     pkgs.claude-code
 
-    # oldPkgs.stremio
+    (pkgs.writeShellScriptBin "pdftotext" ''
+      for file in "''$@"; do
+        if [ -f "''$file" ]; then
+          name="''${file%.*}"
+          echo "Converting ''$file to ''$nom.txt"
+          ${pkgs.haskellPackages.pdftotext}/bin/pdftotext.hs text "''$file" > "''$name.txt"
+        else
+          echo "Erreur : ''$file is not a valid file."
+        fi
+      done
+      echo "Done"
+    '')
   ];
 
   home.sessionVariables = {
