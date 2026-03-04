@@ -25,6 +25,14 @@
   console.keyMap = "fr";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.fellwin = {
+    isNormalUser = true;
+    description = "fellwin";
+    extraGroups = [
+      "wheel"
+    ];
+  };
+
   users.users.server = {
     isNormalUser = true;
     description = "server";
@@ -47,15 +55,16 @@
   services.openssh.enable = true;
 
   networking = {
+    networkmanager.enable = false;
     useDHCP = false;
-    interfaces.nominterface.useDHCP = false;
-    interfaces.nominterface.ipv4.addresses = [
+    interfaces.enp34s0.useDHCP = false;
+    interfaces.enp34s0.ipv4.addresses = [
       {
-        address = "192.168.1.2";
+        address = ".100";
         prefixLength = 24;
       }
     ];
-    defaultGateway = "192.168.1.1";
+    defaultGateway = ".1";
     nameservers = ["1.1.1.1" "1.0.0.1"];
   };
 
