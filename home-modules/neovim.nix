@@ -70,7 +70,7 @@
     copilot-language-server
 
     # to enable aider.el plugin to get ai editing
-    aider-chat-full
+    #aider-chat-full
   ];
 
   # to add mason bin, make sure to have nix-ld enabled

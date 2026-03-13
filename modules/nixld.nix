@@ -7,18 +7,29 @@
       glib
       zlib
       openssl
-      xorg.libX11
-      xorg.libXext
+      libX11
+      libXext
       libGL
-      xorg.libxcb
-      xorg.libXrandr
-      xorg.libXfixes
-      xorg.libxshmfence
-      xorg.libXrender
-      xorg.libXcomposite
+      libxcb
+      libXrandr
+      libXfixes
+      libxshmfence
+      libXrender
+      libXcomposite
       #gstreamer
       #gst-plugins-base
       #gst-plugins-good
+
+      #android:
+      stdenv.cc.cc
+      zlib
+      fuse3
+      icu
+      nss
+      openssl
+      curl
+      expat
+      libgcc
     ];
   };
 }
