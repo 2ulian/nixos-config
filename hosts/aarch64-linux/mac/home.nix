@@ -26,9 +26,10 @@ in {
     pkgs.distrobox
     pkgs.box64
     pkgs.jetbrains.idea
+    pkgs.jetbrains.rider
     stablePkgs.azahar
 
-    pkgs.superTuxKart
+    pkgs.supertuxkart
   ];
 
   xdg.desktopEntries.stremio = {
